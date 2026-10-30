@@ -1,0 +1,14 @@
+{
+  "name": "pojian",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "build:review": "node scripts/build-review.mjs",
+    "build:site": "npm run build:review && node scripts/build-site.mjs",
+    "test:stage1": "node scripts/smoke-stage1.mjs",
+    "test:stage2": "node scripts/smoke-stage2.mjs",
+    "test:stage3": "node scripts/smoke-stage3.mjs",
+    "test:stage4": "node scripts/smoke-stage4.mjs"
+  }
+}

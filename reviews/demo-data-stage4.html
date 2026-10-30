@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>破茧 · 脱敏示例数据页</title>
+  <style>
+    :root{--ink:#334b3b;--accent:#8fae93;--paper:#f5eedf}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(circle at 18% 6%,#fff5dc 0,transparent 34%),radial-gradient(circle at 88% 18%,#dae7e1 0,transparent 30%),#e6e8d9;color:var(--ink);font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}button{font:inherit}
+    .shell{max-width:1080px;margin:0 auto;padding:34px 24px 70px}.top{display:flex;justify-content:space-between;align-items:center;gap:15px}.brand{font-family:Georgia,"Songti SC",serif;font-size:25px;letter-spacing:.15em;font-weight:bold}.badge{border:1px solid #cdad81;color:#865c3e;background:#fff3df;border-radius:99px;padding:8px 13px;font-size:11px;font-weight:900;letter-spacing:.06em}.hero{position:relative;overflow:hidden;border:1px solid #fff9ed;background:#f8f5ea;box-shadow:0 22px 65px #556a5840;border-radius:26px;margin:26px 0 20px;padding:38px 42px 42px}.hero:after{content:"";position:absolute;width:350px;height:350px;border-radius:50%;right:-80px;top:-115px;background:radial-gradient(circle,var(--accent),transparent 67%);opacity:.55;pointer-events:none}.eyebrow{font-size:11px;font-weight:900;letter-spacing:.17em;color:#899987}.hero h1{font-family:Georgia,"Songti SC",serif;font-size:clamp(32px,5vw,54px);line-height:1.2;margin:12px 0 10px}.hero p{max-width:620px;font-size:15px;line-height:1.8;color:#667968;margin:0}.hero small{display:block;margin-top:17px;color:#a17958;font-weight:800}.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}.card{background:#fbf9f0;border:1px solid #fff;border-radius:20px;padding:22px;box-shadow:0 8px 28px #66745e23;min-height:245px}.card h2{font-family:Georgia,"Songti SC",serif;font-size:20px;margin:0 0 8px}.card p{font-size:12px;color:#829082;line-height:1.6;margin:0 0 20px}.pill-row{display:flex;flex-wrap:wrap;gap:8px}.pill{border-radius:99px;background:#e7eee4;border:1px solid #c8d7c8;color:#496551;font-size:12px;padding:8px 11px;font-weight:800}.node-map{position:relative;height:118px;background:linear-gradient(135deg,#e5eee8,#f0e8dc);border-radius:15px;overflow:hidden}.node-map svg{width:100%;height:100%}.feed-item{display:flex;gap:10px;align-items:center;border:1px solid #e2e9dd;background:#fffdf5;border-radius:12px;padding:10px;margin-top:8px}.square{width:31px;height:31px;border-radius:8px;background:var(--accent);flex:none}.bars{flex:1}.bars i{display:block;height:6px;border-radius:9px;background:#c9d6cc;margin:4px 0}.bars i:last-child{width:65%;background:#d9dfd4}.foot{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-top:20px;padding:16px 4px;color:#778977;font-size:12px}.foot button{border:0;background:#365844;color:#fff5e4;padding:11px 17px;border-radius:99px;font-weight:800;cursor:pointer}.foot button:hover{background:#274d38}
+    @media(max-width:760px){.grid{grid-template-columns:1fr}.shell{padding:15px 12px 45px}.hero{padding:30px 25px}.card{min-height:0}.foot{align-items:flex-start;flex-direction:column}}
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <div class="top"><div class="brand">破茧 <span style="font-family:sans-serif;font-size:11px;letter-spacing:.1em;color:#8b9b89">/ DATA VIEW</span></div><div class="badge">脱敏示意 · 无真实用户资料</div></div>
+    <section class="hero"><div class="eyebrow">COCOON / INFORMATION WINDOW</div><h1 id="title">示例茧房</h1><p id="intro">这是项目内的数据页接入示例。正式资料和链接会在提供后替换。</p><small id="meta">页面与游戏在不同标签页打开；切回游戏可保留所在茧房。</small></section>
+    <div class="grid">
+      <section class="card"><h2>用户画像</h2><p>只展示字段结构。具体身份、年龄、性格及喜好均未接入。</p><div class="pill-row"><span class="pill">资料字段 · 已隐藏</span><span class="pill">公开范围 · 待配置</span><span class="pill">本人授权 · 待接入</span></div></section>
+      <section class="card"><h2>浏览信息</h2><p>卡片为纯视觉占位，没有网址、时间、浏览轨迹或事件明细。</p><div class="feed-item"><span class="square"></span><span class="bars"><i></i><i></i></span></div><div class="feed-item"><span class="square" style="opacity:.7"></span><span class="bars"><i></i><i></i></span></div><div class="feed-item"><span class="square" style="opacity:.5"></span><span class="bars"><i></i><i></i></span></div></section>
+      <section class="card"><h2>内容标签</h2><p>标签值尚未提供。此处的色块不对应任何人的兴趣判断。</p><div class="pill-row"><span class="pill">标签占位 01</span><span class="pill">标签占位 02</span><span class="pill">标签占位 03</span></div></section>
+    </div>
+    <div class="foot"><span>此页不会请求外部数据，也不包含真实玩家资料或浏览记录。关闭或切换标签页即可回到原游戏位置。</span><button id="close-button" type="button">关闭此标签，返回游戏</button></div>
+  </main>
+  <script src="../public/data/cocoons-stage4.js"></script>
+  <script>
+    (() => {
+      const id = new URLSearchParams(location.search).get('room');
+      const room = window.PojianCocoons.rooms.find(item => item.id === id);
+      const title = room ? room.themeTitle : '我的信息视角';
+      document.title = `破茧 · ${title} · 示例数据页`;
+      document.documentElement.style.setProperty('--accent', room?.accent || '#b8a17b');
+      document.getElementById('title').textContent = title;
+      document.getElementById('intro').textContent = room?.demoLine || '这是自己的示例信息窗口。正式资料和链接会在提供后替换。';
+      document.getElementById('close-button').addEventListener('click', () => window.close());
+    })();
+  </script>
+</body>
+</html>
