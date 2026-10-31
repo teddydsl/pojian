@@ -1,0 +1,72 @@
+{
+  "stage": "media-pendants-review",
+  "publishedReleaseUnchanged": "5a3-e0a0c9c7b193",
+  "sources": [
+    {
+      "path": "public/releases/5a3-e0a0c9c7b193/assets.js",
+      "sha256": "1fc61e1ef7260e93ef08f43dd7c6f57a0a0709afd45a5ca3f3d6578d05db18da"
+    },
+    {
+      "path": "public/assets/models/media-pendant.embedded.js",
+      "sha256": "5530c676c305318e5660c139cca4db205abb1681f2e83fcf618117623a6cb8c5"
+    },
+    {
+      "path": "public/data/media-stage5a.js",
+      "sha256": "51dab60a2c5a6eb3c7c408e5c2082ee8e5dd12e7df74566966443b65dd0829e4"
+    },
+    {
+      "path": "src/stage3-audio.js",
+      "sha256": "3afe5f799eecad63600230ddc5d29103e5a5ddb5c96eeb8e5f04099f5427ef48"
+    },
+    {
+      "path": "src/world/media-pendants.js",
+      "sha256": "307962099e936955f7151b11ba5df066635eeeec667cd1a51883d31d6d3fa33c"
+    },
+    {
+      "path": "src/systems/media-interaction.js",
+      "sha256": "7ac568cfffd050088cca6f30535f9503acb4a0afa9d4f86048af115930a2d7b3"
+    },
+    {
+      "path": "src/ui/video-viewer.js",
+      "sha256": "c8be6cb1fd5b2d79e5408255f054ca191490eca5822dc28a72ff1951167afc2b"
+    },
+    {
+      "path": "public/assets/models/video-player-pendant.glb",
+      "sha256": "d72c678e7b9dac4b20a843ad069d00aa6793d33910ffb8571126839ffbdba740"
+    },
+    {
+      "path": "src/stage5a.js",
+      "sha256": "e53de67c4c0d9519866dd45485718f7684eb55b638e49b144bb74c3858aa1eb3"
+    },
+    {
+      "path": "src/ui/video-viewer.css",
+      "sha256": "7d736ec57cef1fb45d8ec53924786914779cb4dff354ac6fc9420213885eb13a"
+    },
+    {
+      "path": "reviews/fragments/video-viewer.html",
+      "sha256": "7974a7c35561656588ee5eec3bf7a1a00982016664ae80010a6ea60ce49f1fc3"
+    },
+    {
+      "path": "public/assets/textures/pendant-player.webp",
+      "sha256": "1e7404560b79f2c42283a95815227d7a6eed73d1032bc68b3c0d6900aadb91ec"
+    },
+    {
+      "path": "public/assets/textures/pendant-profile.webp",
+      "sha256": "95e7c1b2cd1fe8a12ae66b1a0d4661534fbf8e6ea6e46008b5ac475e43b788ed"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "reviews/snapshots/media-pendants.assets.js",
+      "sha256": "68adde07845e410399c8e597039965b8c4d581f53948325cf6850c38f5227b0e"
+    },
+    {
+      "path": "reviews/snapshots/media-pendants.js",
+      "sha256": "e53de67c4c0d9519866dd45485718f7684eb55b638e49b144bb74c3858aa1eb3"
+    },
+    {
+      "path": "reviews/media-pendants.html",
+      "sha256": "db445239050b8fa05d0a038d464e29ec26f45a3c1510643fa7ac13727ec7865c"
+    }
+  ]
+}

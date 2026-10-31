@@ -2,7 +2,7 @@
 (() => {
   'use strict';
   const escape = value => String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  window.PojianStage5UI = {mount({document:doc,config,store,houses,bounds,paths,view,onInputReset,onOpenData,onDoorChange}) {
+  window.PojianStage5UI = {mount({document:doc,config,store,houses,bounds,paths,view,onInputReset,onOpenData,onDoorChange,onMapOpen,onHouseSelect}) {
     const $=selector=>doc.querySelector(selector), icon=(name,cls='')=>`<img class="${cls}" src="${escape(config.iconRoot+config.icons[name])}" alt="" draggable="false">`;
     let left=null,right=null,popover=null,stack=[],lastMap=0;
     const panels={map:$('#map-panel'),profile:$('#profile-panel'),history:$('#history-panel'),friends:$('#friends-panel'),settings:$('#settings-panel'),messages:$('#messages-panel'),weather:$('#weather-popover'),data:$('#data-popover')};
@@ -31,7 +31,7 @@
       if(name==='messages')store.readMessages();
       refresh();sync();
       const heading=panels[name].querySelector('h2');if(heading)heading.focus();
-      if(name==='map')updateMap(true);
+      if(name==='map'){onMapOpen?.();updateMap(true);}
     }
     for(const name of ['map','weather','data','messages','settings'])$('#'+buttonIds[name]).addEventListener('click',()=>show(name==='map'?'left':['settings','messages'].includes(name)?'right':'popover',name));
     doc.querySelectorAll('[data-close]').forEach(button=>button.addEventListener('click',()=>close(button.dataset.close)));
@@ -80,14 +80,16 @@
     const pad=1.7,minX=bounds.minX-pad,maxX=bounds.maxX+pad,minZ=bounds.minZ-pad,maxZ=bounds.maxZ+pad;
     const px=x=>14+(x-minX)/(maxX-minX)*292,py=z=>12+(z-minZ)/(maxZ-minZ)*250;
     $('#map-routes').innerHTML=paths.map(points=>`<polyline points="${points.map(([x,z])=>`${px(x).toFixed(2)},${py(z).toFixed(2)}`).join(' ')}"/>`).join('');
-    $('#map-houses').innerHTML=houses.map(h=>`<g class="map-house" data-map-house="${escape(h.id)}" tabindex="0" role="img" aria-label="${escape(h.name)}"><title>${escape(h.name)}</title><circle cx="${px(h.x)}" cy="${py(h.z)}" r="7"/><text x="${px(h.x)}" y="${py(h.z)-12}" text-anchor="middle">${escape(h.name)}</text></g>`).join('');
+    $('#map-houses').innerHTML=houses.map(h=>`<g class="map-house" data-map-house="${escape(h.id)}" tabindex="0" role="button" aria-label="查看${escape(h.name)}位置"><title>${escape(h.name)}</title><circle cx="${px(h.x)}" cy="${py(h.z)}" r="7"/><text x="${px(h.x)}" y="${py(h.z)-12}" text-anchor="middle">${escape(h.name)}</text></g>`).join('');
+    $('#map-houses').addEventListener('click',event=>{const marker=event.target.closest('[data-map-house]');if(marker){onHouseSelect?.(marker.dataset.mapHouse);updateMap(true);}});
+    $('#map-houses').addEventListener('keydown',event=>{if(event.key!=='Enter'&&event.key!==' ')return;const marker=event.target.closest('[data-map-house]');if(marker){event.preventDefault();onHouseSelect?.(marker.dataset.mapHouse);updateMap(true);}});
     function updateMap(force=false,now=0){
       if(left!=='map'||(!force&&now-lastMap<85))return;lastMap=now;
       const v=view(),house=houses.find(h=>h.id===(v.mode==='home'?'home':v.roomId));
       const position=v.mode==='forest'?v.position:house;
       $('#map-player').setAttribute('transform',`translate(${px(position.x)} ${py(position.z)}) rotate(${-v.heading*180/Math.PI})`);
-      $('#map-caption').textContent=v.mode==='forest'?'你在林间小路 · 沿小路拜访邻居':`当前在${house.name}（室内）`;
-      for(const h of houses){const el=doc.querySelector(`[data-map-house="${h.id}"]`);el.classList.toggle('visited',store.state.explored.includes(h.id));el.classList.toggle('own',h.id==='home');}
+      $('#map-caption').textContent=v.mode==='forest'?(store.state.story.homeFound?'金色标记是你的茧房，沿小路走过去。':'你在森林中间。点选金色标记，找到自己的茧房。'):`当前在${house.name}（室内）`;
+      for(const h of houses){const el=doc.querySelector(`[data-map-house="${h.id}"]`);el.classList.toggle('visited',store.state.explored.includes(h.id));el.classList.toggle('own',h.id==='home');el.classList.toggle('selected',h.id==='home'&&store.state.story.homeFound);}
     }
     $('#weather-items').innerHTML=config.weather.map((w,i)=>{
       const a=(-90+i*72)*Math.PI/180,x=50+36*Math.cos(a),y=50+36*Math.sin(a);

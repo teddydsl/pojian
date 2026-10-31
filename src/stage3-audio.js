@@ -4,7 +4,7 @@
   function create(win = window) {
     const Context = win.AudioContext || win.webkitAudioContext;
     let ctx = null, master = null, wind = null, windGain = null;
-    let enabled = false, theme = 'home', nextNote = 0, step = 0;
+    let enabled = false, mediaPaused = false, theme = 'home', nextNote = 0, step = 0;
     function tone(frequency, duration, volume, type = 'sine', sweep = 0) {
       if (!enabled || !ctx) return;
       const now = ctx.currentTime;
@@ -21,7 +21,7 @@
     }
     function setup() {
       ctx = new Context();
-      master = ctx.createGain(); master.gain.value = .55; master.connect(ctx.destination);
+      master = ctx.createGain(); master.gain.value = mediaPaused ? 0 : .55; master.connect(ctx.destination);
       const buffer = ctx.createBuffer(1, ctx.sampleRate * 2, ctx.sampleRate);
       const data = buffer.getChannelData(0);
       let last = 0;
@@ -48,7 +48,7 @@
       if (windGain && enabled) windGain.gain.setTargetAtTime(theme === 'nature' ? .035 : theme === 'journey' ? .05 : theme === 'music' ? .018 : .044, ctx.currentTime, .55);
     }
     function update() {
-      if (!enabled || !ctx || ctx.currentTime < nextNote) return;
+      if (mediaPaused || !enabled || !ctx || ctx.currentTime < nextNote) return;
       if (theme === 'nature') {
         tone([810, 980, 760, 1050][step % 4], .21, .032, 'sine', 220);
         nextNote = ctx.currentTime + 2.3 + (step % 3) * .35;
@@ -63,7 +63,11 @@
       }
       step++;
     }
-    return { supported: Boolean(Context), toggle, setTheme, update, isOn: () => enabled };
+    function pauseForMedia(paused) {
+      mediaPaused=!!paused;
+      if(master&&ctx)master.gain.setTargetAtTime(mediaPaused?0:.55,ctx.currentTime,.035);
+    }
+    return { supported: Boolean(Context), toggle, setTheme, update, pauseForMedia, isOn: () => enabled };
   }
   window.PojianAudio = { create };
 })();

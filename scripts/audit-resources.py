@@ -5,7 +5,7 @@ from io import BytesIO
 from PIL import Image
 import json,struct
 root=Path(__file__).resolve().parents[1]
-active={'hedgehog-plush-single-colored','felt-forest-with-mushrooms','fuzzy-egg-game','fern-plant-ground','fern-plant-game','stylized-tree-game','log-game','mossy-shrub-cluster-game','glowing-wool-cave-game'}
+active={'hedgehog-plush-game','felt-forest-with-mushrooms','fuzzy-egg-game','fern-plant-ground','fern-plant-game','stylized-tree-game','log-game','mossy-shrub-cluster-game','glowing-wool-cave-game'}
 models=[]
 for path in sorted((root/'public/assets/models').glob('*.glb')):
     raw=path.read_bytes();length=struct.unpack_from('<I',raw,12)[0];doc=json.loads(raw[20:20+length]);start=28+length

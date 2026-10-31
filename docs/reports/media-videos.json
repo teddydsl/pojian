@@ -1,0 +1,38 @@
+{
+  "preparedAtUTC": "2026-10-31T12:03:14.739289+00:00",
+  "videos": [
+    {
+      "file": "9c4ccb9feeb444b0acb833576a20792a.mp4",
+      "originalCodec": "HEVC/hvc1",
+      "webCodec": "H.264/avc1 + AAC",
+      "originalBytes": 3925881,
+      "webBytes": 7008698,
+      "originalSha256": "897b26af76f08d8008b77668792da9cce0fbed41630f3e82db005a6490123eb2",
+      "webSha256": "82e08f1a8c57a5a3dff52065a0f05a54d372e8eb6b5ca2eee3c2c4776d988aeb",
+      "stream": "Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 720x1280, 2334 kb/s, 30 fps, 30 tbr, 15360 tbn (default)",
+      "fastStart": true
+    },
+    {
+      "file": "150139109f0b585532bc72e3db3fb357.mp4",
+      "originalCodec": "HEVC/hvc1",
+      "webCodec": "H.264/avc1 + AAC",
+      "originalBytes": 1347791,
+      "webBytes": 1812666,
+      "originalSha256": "252ca18e7abf36cdb7bb160efa2423311313606172c38e3ac067169b9ef95486",
+      "webSha256": "189c5352020569aff75e2e1ccab816230a296e848b0f6ba6bb9cf548b7c3895d",
+      "stream": "Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 720x1280, 1244 kb/s, 30 fps, 30 tbr, 15360 tbn (default)",
+      "fastStart": true
+    },
+    {
+      "file": "e296f850d20b9970f047f954797cea8a.mp4",
+      "originalCodec": "HEVC/hvc1",
+      "webCodec": "H.264/avc1 + AAC",
+      "originalBytes": 975839,
+      "webBytes": 1364227,
+      "originalSha256": "78174fa875b43d546eb4e9a51933cf8177f2a4090f8d333ec7e7f7f7c141701c",
+      "webSha256": "cc60576d9b58ad0db3672af5fbd351605a33bc641a51bd6ebbceea6c0ecced05",
+      "stream": "Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 720x1280, 1601 kb/s, 30 fps, 30 tbr, 15360 tbn (default)",
+      "fastStart": true
+    }
+  ]
+}

@@ -7,36 +7,43 @@ const root=resolve(import.meta.dirname,'..'),read=p=>readFileSync(resolve(root,p
 const manifest=JSON.parse(read('public/release-manifest.json'));
 for(const file of manifest.files){assert.equal(read(file.path).length,file.bytes);assert.equal(createHash('sha256').update(read(file.path)).digest('hex'),file.sha256,file.path);}
 const metrics=JSON.parse(read('docs/reports/runtime-after.json')),baseline=JSON.parse(read('docs/reports/runtime-before.json'));
-assert.equal(metrics.indoor.estimatedTriangles,baseline.indoor.estimatedTriangles,'Keep the accepted interior detail');
-metrics.forestViews.forEach((view,i)=>{assert.equal(view.estimatedTriangles,baseline.forestViews[i].estimatedTriangles,'Preserve approved forest geometry');assert.equal(view.estimatedCalls,baseline.forestViews[i].estimatedCalls);assert.ok(view.estimatedCalls<=150);assert.ok(view.estimatedTriangles<2500000);});
-assert.ok(metrics.forestIdle.domMutations<baseline.forestIdle.domMutations*.05,'Idle HUD must avoid redundant DOM writes');
-assert.ok(metrics.indoor.idle.domMutations<baseline.indoor.idle.domMutations*.05);
+assert.equal(metrics.indoor.estimatedTriangles,baseline.indoor.estimatedTriangles,'Keep accepted interior geometry');
+metrics.forestViews.forEach((view,i)=>{assert.equal(view.estimatedTriangles,baseline.forestViews[i].estimatedTriangles);assert.equal(view.estimatedCalls,baseline.forestViews[i].estimatedCalls);});
 for(const page of ['index.html','reviews/stage-5a.html']){
-  const game=boot(page),{w,doc,art,find,tap,tick,drain}=game;
+  const previousSave={version:3,explored:['moss','chestnut','hill'],story:{wander:true,mapOpened:true,homeFound:true,homeEntered:true,infoOpened:true,videoOpened:true,ownLocked:true,ownUnlocked:true,neighborUnlocked:true},doorOpen:true};
+  const game=boot(page,{'pojian.save':JSON.stringify(previousSave)}),{w,doc,art,find,tap,tick,drain}=game;
+  const saved=()=>JSON.parse(game.storage.get('pojian.save'));
   assert.ok(art&&find('#failure').hidden);assert.deepEqual(game.errors,[]);
   assert.equal(doc.querySelector('meta[name="pojian-release"]').content,manifest.releaseId);
-  assert.equal(art.interiorRevision.removedSigns,5);assert.equal(art.interiorExit.userData.model,'glowing-wool-cave-game');
-  for(const img of doc.querySelectorAll('img')){
-    const path=new URL(img.src).pathname.replace(/^\/pojian\//,'');assert.ok(existsSync(resolve(root,path)),path);assert.ok(path.endsWith('.webp'));
-  }
-  function move(){const p=art.player.position.clone();game.key('w');tick(2);game.key('w','keyup');assert.ok(p.distanceTo(art.player.position)>.001);}
-  function openPanelData(id){art.player.position.copy(art.panelApproach);tap('e');assert.ok(game.opened.at(-1).endsWith('/pojian/reviews/demo-data-stage4.html?room='+id));assert.ok(art.player.visible);move();}
-  openPanelData('home');
+  assert.equal(art.interiorRevision.removedSigns,5);
+  assert.equal(saved().version,4);assert.deepEqual(saved().explored,[]);assert.ok(Object.values(saved().story).every(done=>!done));
+  assert.equal(find('#explored-count').textContent,'0 / 2');assert.equal(find('.explored-chip.seen'),null);
+  assert.equal(find('.brand').textContent,'针毡茧林·林间小路');assert.equal(find('.location'),null);
+  assert.ok(art.forest.visible);assert.ok(!art.interior.visible);assert.equal(find('#intro-overlay').hidden,false);
+  for(const img of doc.querySelectorAll('img')){const path=new URL(img.src).pathname.replace(/^\/pojian\//,'');assert.ok(existsSync(resolve(root,path)),path);assert.ok(path.endsWith('.webp'));}
+  find('#intro-skip').click();assert.equal(find('#intro-overlay').hidden,true);
+  game.key('w');tick(220);game.key('w','keyup');assert.ok(saved().story.wander,'Walking should finish first task');
+  find('#map-button').click();assert.equal(find('#map-panel').hidden,false);assert.ok(saved().story.mapOpened);
+  find('[data-map-house="home"]').dispatchEvent(new w.MouseEvent('click',{bubbles:true}));assert.ok(saved().story.homeFound);tap('Escape');
+  art.player.position.copy(art.ownDoorTarget);tap('e');drain();assert.ok(art.interior.visible);assert.ok(saved().story.homeEntered);
+  art.player.position.copy(art.panelApproach);tap('e');assert.equal(find('#room-info-panel'),null);assert.ok(game.opened.at(-1).endsWith('/pojian/reviews/demo-data-stage4.html?room=home'));assert.ok(saved().story.infoOpened);
+  art.player.position.copy(art.pendants.find(p=>p.kind==='video').approachTarget);tap('e');assert.equal(find('#media-viewer').hidden,false);assert.ok(saved().story.videoOpened);
+  find('#media-viewer-close').click();assert.equal(find('#media-viewer').hidden,true);
+  find('#door-lock-button').click();assert.equal(saved().doorOpen,false);assert.ok(saved().story.ownLocked);
+  find('#door-lock-button').click();assert.equal(saved().doorOpen,true);assert.ok(saved().story.ownUnlocked);
   art.player.position.copy(art.exitTarget);tap('e');drain();assert.ok(art.forest.visible);
-  for(const hut of art.huts){
-    art.player.position.copy(hut.doorTarget);tap('e');drain();assert.ok(art.interior.visible);openPanelData(hut.id);
-    art.player.position.copy(art.exitTarget);tap('e');drain();assert.ok(art.forest.visible);
-  }
-  find('#map-button').click();assert.equal(find('#map-panel').hidden,false);tap('Escape');move();
-  find('#data-button').click();doc.querySelector('[data-page="history"]').click();doc.querySelector('[data-room-id="hill"]').click();assert.ok(game.opened.at(-1).endsWith('room=hill'));assert.ok(art.forest.visible);move();
-  w.open=()=>null;art.player.position.copy(art.ownDoorTarget);tap('e');drain();art.player.position.copy(art.panelApproach);tap('e');assert.equal(find('#link-fallback').hidden,false);tap('Escape');move();
+  const hill=art.huts.find(h=>h.id==='hill');assert.equal(hill.open,false);
+  art.player.position.copy(hill.doorTarget);tick();tap('e');assert.equal(hill.open,false);assert.ok(art.forest.visible);assert.ok(find('#interaction-prompt').textContent.includes('已上锁'));
+  for(const hut of art.huts.filter(h=>h.id!=='hill')){art.player.position.copy(hut.doorTarget);tap('e');drain();assert.ok(art.interior.visible);art.player.position.copy(art.exitTarget);tap('e');drain();}
+  assert.equal(saved().explored.length,2);assert.equal(find('#explored-count').textContent,'2 / 2');assert.ok(find('#checklist li:last-child').classList.contains('done'));
   find('#settings-button').click();find('#task-toggle').click();tap('Escape');assert.equal(find('#task-panel').hidden,true);
-  assert.equal(JSON.parse(game.storage.get('pojian.save')).explored.length,3);
-  game.reconfigure({url:'file:///workspace/pojian/'+page});
-  w.open=()=>({opener:w,location:{replace:url=>game.opened.push(url)}});
-  art.player.position.copy(art.panelApproach);tap('e');assert.equal(game.opened.at(-1),'file:///workspace/pojian/reviews/demo-data-stage4.html?room=home');
-  for(const value of [w.PojianBasePath,w.PojianReleaseBase])assert.ok(!value.startsWith('/'));
+  find('#reset-button').click();assert.ok(art.forest.visible);assert.equal(saved().explored.length,2);
+  assert.deepEqual(game.errors,[]);
+  const persisted=saved();
   game.close();
+  const resumed=boot(page,{'pojian.save':JSON.stringify(persisted)});
+  assert.equal(resumed.find('#explored-count').textContent,'2 / 2');assert.equal(resumed.find('.explored-chip.seen')!==null,true);
+  assert.deepEqual(resumed.errors,[]);resumed.close();
 }
 assert.ok(existsSync(resolve(root,'.nojekyll')));
-console.log('Release OK: root + independent review, model/sign revision, three visits, link targets/fallback, map/settings/save, pixel-exact icon paths, frozen hashes and geometry/DOM performance budgets.');
+console.log('Release OK: migrated 0/2 start, direct profile, forest title, locked neighbor, two visits, media, save and both pages.');

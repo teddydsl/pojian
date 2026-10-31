@@ -7,6 +7,7 @@
     "build:review": "node scripts/build-review.mjs",
     "build:model-preview": "node scripts/build-model-preview.mjs",
     "build:plush-preview": "python3 scripts/colorize-hedgehog-plush.py && node scripts/build-plush-preview.mjs",
+    "build:hedgehog-game": "node scripts/build-hedgehog-game.mjs",
     "build:forest-preview": "node scripts/build-forest-preview.mjs",
     "build:egg-preview": "node scripts/build-egg-preview.mjs",
     "build:fern-preview": "node scripts/build-fern-preview.mjs",
@@ -22,7 +23,9 @@
     "build:stage5a-1": "node scripts/build-stage5a.mjs",
     "test:stage5a-1": "node scripts/smoke-stage5a-1.mjs",
     "audit:runtime": "node scripts/audit-runtime.mjs index.html docs/reports/runtime-after.json",
-    "test:release": "node scripts/smoke-release.mjs"
+    "test:release": "node scripts/smoke-release.mjs",
+    "build:media-review": "node scripts/build-media-review.mjs",
+    "test:media-review": "node scripts/smoke-media-pendants.mjs"
   },
   "devDependencies": {
     "jsdom": "^21.1.2"

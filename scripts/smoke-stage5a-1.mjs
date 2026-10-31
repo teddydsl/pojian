@@ -6,11 +6,16 @@ import assert from 'node:assert/strict';
 import {JSDOM,VirtualConsole} from 'jsdom';
 
 const root=resolve(import.meta.dirname,'..'),read=path=>readFileSync(resolve(root,path),'utf8');
+const acceptedAssets=read('reviews/snapshots/stage-5a-1.assets.js');
+const saveStart=acceptedAssets.indexOf('/* src/systems/save.js */');
+const saveEnd=acceptedAssets.indexOf('/* src/systems/weather.js */',saveStart);
+assert.ok(saveStart>=0&&saveEnd>saveStart);
+const acceptedSave=acceptedAssets.slice(saveStart,saveEnd);
 const roomIds=['north','stream','hill'],key='pojian.save';
 function saveHarness(entries={},unavailable=false){
   const data=new Map(Object.entries(entries));
   const win={localStorage:{getItem(k){if(unavailable)throw Error('storage denied');return data.get(k)??null;},setItem(k,v){if(unavailable)throw Error('quota');data.set(k,v);}}};
-  vm.runInNewContext(read('src/systems/save.js'),{window:win,Date});
+  vm.runInNewContext(acceptedSave,{window:win,Date});
   return {store:win.PojianSave.create(win,roomIds),data,win};
 }
 const legacy={'pojian.stage3.explored':'["north","hill","north","bad"]','pojian.stage4.tasksVisible':'false'};

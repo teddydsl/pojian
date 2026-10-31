@@ -4,10 +4,10 @@ import {resolve} from 'node:path';
 import {performance} from 'node:perf_hooks';
 import {JSDOM,VirtualConsole} from 'jsdom';
 const root=resolve(import.meta.dirname,'..');
-export function boot(page='reviews/stage-5a-1.html') {
+export function boot(page='reviews/stage-5a-1.html',initialStorage={}) {
   const errors=[],console=new VirtualConsole();console.on('jsdomError',e=>errors.push(e.message));
   const dom=new JSDOM(readFileSync(resolve(root,page),'utf8'),{url:`https://teddydsl.github.io/pojian/${page}`,runScripts:'outside-only',virtualConsole:console});
-  const w=dom.window,doc=w.document,find=s=>doc.querySelector(s),timers=[],storage=new Map(),opened=[];
+  const w=dom.window,doc=w.document,find=s=>doc.querySelector(s),timers=[],storage=new Map(Object.entries(initialStorage)),opened=[];
   let frame,art,camera,scene,renderer;
   Object.defineProperty(w,'localStorage',{value:{getItem:k=>storage.get(k)??null,setItem:(k,v)=>storage.set(k,v)}});
   const context=new Proxy({},{get:()=>()=>{}});w.HTMLCanvasElement.prototype.getContext=()=>context;
@@ -18,21 +18,24 @@ export function boot(page='reviews/stage-5a-1.html') {
   w.requestAnimationFrame=cb=>{frame=cb;};w.ResizeObserver=class{observe(){}};
   Object.defineProperty(find('#viewport'),'clientWidth',{value:1440});Object.defineProperty(find('#viewport'),'clientHeight',{value:900});
   w.open=()=>({opener:w,location:{replace:url=>opened.push(url)}});
-  let audioOn=false;
+  let audioOn=false,audioPaused=false;
+  w.HTMLMediaElement.prototype.play=function(){this.__playCalls=(this.__playCalls||0)+1;return Promise.resolve();};
+  w.HTMLMediaElement.prototype.pause=function(){this.__pauseCalls=(this.__pauseCalls||0)+1;};
+  w.HTMLMediaElement.prototype.load=function(){this.__loadCalls=(this.__loadCalls||0)+1;};
   function install() {
     const THREE=w.THREE,Camera=THREE.PerspectiveCamera;
     THREE.PerspectiveCamera=class extends Camera{constructor(...args){super(...args);camera=this;}};
     THREE.Clock=class{elapsedTime=0;getDelta(){this.elapsedTime+=.016;return .016;}};
-    THREE.WebGLRenderer=class{constructor(){renderer=this;this.domElement=doc.createElement('canvas');}setPixelRatio(){}setSize(){}render(){}};
+    THREE.WebGLRenderer=class{constructor(){renderer=this;this.domElement=doc.createElement('canvas');this.renderCalls=0;}setPixelRatio(){}setSize(){}render(){this.renderCalls++;}};
     const build=w.PojianCurrentArt.build;w.PojianCurrentArt.build=(...args)=>{scene=args[1];art=build(...args);return art;};
-    w.PojianAudio.create=()=>({supported:true,toggle:async()=>audioOn=!audioOn,isOn:()=>audioOn,setTheme(){},update(){}});
+    w.PojianAudio.create=()=>({supported:true,toggle:async()=>audioOn=!audioOn,isOn:()=>audioOn,pauseForMedia:value=>audioPaused=!!value,setTheme(){},update(){}});
   }
   let parseMs=0,bootMs=0;
   const scripts=[...doc.querySelectorAll('script')];
   for(const el of scripts){
     if(!el.src){w.eval(el.textContent);continue;}
     const path=new URL(el.src).pathname.replace(/^\/pojian\//,''),source=readFileSync(resolve(root,path),'utf8');
-    const runtime=path.endsWith('/runtime.js')||path.endsWith('/stage-5a-1.js');
+    const runtime=path.endsWith('/runtime.js')||path.endsWith('/stage-5a-1.js')||path.endsWith('/media-pendants.js');
     if(runtime)install();
     const before=performance.now();w.eval(source);const ms=performance.now()-before;
     if(runtime)bootMs+=ms;else parseMs+=ms;
@@ -63,5 +66,5 @@ export function boot(page='reviews/stage-5a-1.html') {
     const before=performance.now();tick(frames);const ms=performance.now()-before,mutations=observer.takeRecords().length;observer.disconnect();
     return {frames,totalCpuMs:Number(ms.toFixed(2)),meanCpuMs:Number((ms/frames).toFixed(4)),domMutations:mutations};
   }
-  return {w,doc,find,art,camera,scene,renderer,opened,storage,errors,tap,key,tick,drain,stats,idleSample,parseMs,bootMs,reconfigure:options=>dom.reconfigure(options),close:()=>dom.window.close()};
+  return {w,doc,find,art,camera,scene,renderer,opened,storage,errors,tap,key,tick,drain,stats,idleSample,parseMs,bootMs,audioState:()=>({enabled:audioOn,mediaPaused:audioPaused}),reconfigure:options=>dom.reconfigure(options),close:()=>dom.window.close()};
 }
