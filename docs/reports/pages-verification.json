@@ -1,0 +1,241 @@
+{
+  "releaseId": "5a3-e0a0c9c7b193",
+  "url": "https://teddydsl.github.io/pojian/",
+  "verifiedAtUTC": "2026-10-31T11:07:28Z",
+  "method": "HTTPS GET, Cache-Control:no-cache, version query; decompressed SHA-256 comparison. Network timings are this verification run, not a simulated browser load.",
+  "files": [
+    {
+      "path": "index.html",
+      "http": 200,
+      "matches": true,
+      "sha256": "27c735406755cc6a4418055537b94c0026a0b75817e4ce973383283dce96ac4c",
+      "decodedBytes": 26000,
+      "transferBytes": 7903,
+      "encoding": "gzip",
+      "seconds": 0.977,
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "path": "reviews/stage-5a.html",
+      "http": 200,
+      "matches": true,
+      "sha256": "8babdc4d08dad267f6629903a47140513938c81845749de74a7ec98d621fdb67",
+      "decodedBytes": 25996,
+      "transferBytes": 7899,
+      "encoding": "gzip",
+      "seconds": 0.999,
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "path": "public/releases/5a3-e0a0c9c7b193/assets.js",
+      "http": 200,
+      "matches": true,
+      "sha256": "1fc61e1ef7260e93ef08f43dd7c6f57a0a0709afd45a5ca3f3d6578d05db18da",
+      "decodedBytes": 12124681,
+      "transferBytes": 6796714,
+      "encoding": "gzip",
+      "seconds": 2.628,
+      "contentType": "application/javascript; charset=utf-8"
+    },
+    {
+      "path": "public/releases/5a3-e0a0c9c7b193/runtime.js",
+      "http": 200,
+      "matches": true,
+      "sha256": "10688b777ebad1826a5d52b47c48a36806283a987c0b0838652836c4a5390014",
+      "decodedBytes": 20705,
+      "transferBytes": 7106,
+      "encoding": "gzip",
+      "seconds": 0.932,
+      "contentType": "application/javascript; charset=utf-8"
+    },
+    {
+      "path": "public/releases/5a3-e0a0c9c7b193/icons/map/map.webp",
+      "http": 200,
+      "matches": true,
+      "sha256": "18ae7cd6c68b29cdf6ad88733a25a3319182c4cdbdc2badd88e931c73e68175d",
+      "decodedBytes": 28194,
+      "transferBytes": 28194,
+      "encoding": "identity",
+      "seconds": 0.888,
+      "contentType": "image/webp"
+    },
+    {
+      "path": "public/releases/5a3-e0a0c9c7b193/icons/weather/weather-clear.webp",
+      "http": 200,
+      "matches": true,
+      "sha256": "8b56d304a89cc82f1d4e1e693de7367164af1f56cff190fa94e1a1f5d7a5455a",
+      "decodedBytes": 24772,
+      "transferBytes": 24772,
+      "encoding": "identity",
+      "seconds": 1.177,
+      "contentType": "image/webp"
+    },
+    {
+      "path": "public/releases/5a3-e0a0c9c7b193/icons/weather/weather-cloudy.webp",
+      "http": 200,
+      "matches": true,
+      "sha256": "3ed42ae5c2b6eb7d7bd6f57407833b2d989b040a751134e805a062798d7646ee",
+      "decodedBytes": 24018,
+      "transferBytes": 24018,
+      "encoding": "identity",
+      "seconds": 0.882,
+      "contentType": "image/webp"
+    },
+    {
+      "path": "public/releases/5a3-e0a0c9c7b193/icons/weather/weather-rain.webp",
+      "http": 200,
+      "matches": true,
+      "sha256": "5674ebba87ff8d0e79a3443007d68bc92798dea6ecd65ed9553a47019c5551f7",
+      "decodedBytes": 26536,
+      "transferBytes": 26536,
+      "encoding": "identity",
+      "seconds": 0.876,
+      "contentType": "image/webp"
+    },
+    {
+      "path": "public/releases/5a3-e0a0c9c7b193/icons/weather/weather-fog.webp",
+      "http": 200,
+      "matches": true,
+      "sha256": "54ed37ffc219689bd8a72846fb23fb05608b00b300a3454a6b2f357ea883884e",
+      "decodedBytes": 24640,
+      "transferBytes": 24640,
+      "encoding": "identity",
+      "seconds": 1.186,
+      "contentType": "image/webp"
+    },
+    {
+      "path": "public/releases/5a3-e0a0c9c7b193/icons/weather/weather-wind.webp",
+      "http": 200,
+      "matches": true,
+      "sha256": "0906557113e605d7b8edcda8950bb9e96bc161dbf84e756ed2f7469f0d4adbc7",
+      "decodedBytes": 23880,
+      "transferBytes": 23880,
+      "encoding": "identity",
+      "seconds": 1.016,
+      "contentType": "image/webp"
+    },
+    {
+      "path": "public/releases/5a3-e0a0c9c7b193/icons/data/data.webp",
+      "http": 200,
+      "matches": true,
+      "sha256": "0431614515cb5f292f04796acc6fe1b00d32d31bc4f8dea961cca68a7843afa0",
+      "decodedBytes": 24654,
+      "transferBytes": 24654,
+      "encoding": "identity",
+      "seconds": 0.905,
+      "contentType": "image/webp"
+    },
+    {
+      "path": "public/releases/5a3-e0a0c9c7b193/icons/data/profile.webp",
+      "http": 200,
+      "matches": true,
+      "sha256": "9b0980ce22d7fc563aaccba8895046e5dc703fd75240de358a160becee66a7e9",
+      "decodedBytes": 25544,
+      "transferBytes": 25544,
+      "encoding": "identity",
+      "seconds": 1.833,
+      "contentType": "image/webp"
+    },
+    {
+      "path": "public/releases/5a3-e0a0c9c7b193/icons/data/history.webp",
+      "http": 200,
+      "matches": true,
+      "sha256": "81561bce5df0ad27771a973f2b8b92321f0bdbb035c6ba28c2dc940b3f423b4d",
+      "decodedBytes": 25526,
+      "transferBytes": 25526,
+      "encoding": "identity",
+      "seconds": 0.9,
+      "contentType": "image/webp"
+    },
+    {
+      "path": "public/releases/5a3-e0a0c9c7b193/icons/data/friends.webp",
+      "http": 200,
+      "matches": true,
+      "sha256": "b3aae50ab6408f76eaff489fad9efb1d5e7d1b312dac80a2a1b21ea8a94bca0a",
+      "decodedBytes": 24944,
+      "transferBytes": 24944,
+      "encoding": "identity",
+      "seconds": 0.849,
+      "contentType": "image/webp"
+    },
+    {
+      "path": "public/releases/5a3-e0a0c9c7b193/icons/quest/quests.webp",
+      "http": 200,
+      "matches": true,
+      "sha256": "9b89036fd87ec142af5c6174e69418814d53d31c75ef6edc91eccd2a5e2890ec",
+      "decodedBytes": 26218,
+      "transferBytes": 26218,
+      "encoding": "identity",
+      "seconds": 0.883,
+      "contentType": "image/webp"
+    },
+    {
+      "path": "public/releases/5a3-e0a0c9c7b193/icons/quest/find-people.webp",
+      "http": 200,
+      "matches": true,
+      "sha256": "7004f1921b0e8f7e0ea77ae91652199dbd2bb28b8f726149a56fd8a3eff538ec",
+      "decodedBytes": 25370,
+      "transferBytes": 25370,
+      "encoding": "identity",
+      "seconds": 0.875,
+      "contentType": "image/webp"
+    },
+    {
+      "path": "public/releases/5a3-e0a0c9c7b193/icons/quest/quest-complete.webp",
+      "http": 200,
+      "matches": true,
+      "sha256": "38f00827d5b3212df991b8d6967666c3c99d95c3210536712c2d39d262d03aea",
+      "decodedBytes": 25778,
+      "transferBytes": 25778,
+      "encoding": "identity",
+      "seconds": 0.864,
+      "contentType": "image/webp"
+    },
+    {
+      "path": "public/releases/5a3-e0a0c9c7b193/icons/quest/rookie-badge.webp",
+      "http": 200,
+      "matches": true,
+      "sha256": "1d8da564be0cba5ca89234540e652a61e2a1a09ce3eef4e13fe4c26628edb3d9",
+      "decodedBytes": 27330,
+      "transferBytes": 27330,
+      "encoding": "identity",
+      "seconds": 0.871,
+      "contentType": "image/webp"
+    },
+    {
+      "path": "public/releases/5a3-e0a0c9c7b193/icons/message/messages.webp",
+      "http": 200,
+      "matches": true,
+      "sha256": "d7395146f350d28b811b3b4e83e58a93bdbc4369d9c1148bc7b81ebfab881c7a",
+      "decodedBytes": 24034,
+      "transferBytes": 24034,
+      "encoding": "identity",
+      "seconds": 0.879,
+      "contentType": "image/webp"
+    },
+    {
+      "path": "reviews/demo-data-stage4.html",
+      "http": 200,
+      "matches": true,
+      "sha256": "631ff8ba4d1371d62908b00610904e6b918e3d3140bfffe15d9e940308e4ea3c",
+      "decodedBytes": 6136,
+      "transferBytes": 2816,
+      "encoding": "gzip",
+      "seconds": 0.906,
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "path": "public/assets/icons/forest.svg",
+      "http": 200,
+      "matches": true,
+      "sha256": "6aac0b8c98e0c0c9276b673f2c344f373b83196e499c2a0839e95714444c5646",
+      "decodedBytes": 417,
+      "transferBytes": 295,
+      "encoding": "gzip",
+      "seconds": 0.8,
+      "contentType": "image/svg+xml"
+    }
+  ],
+  "verifiedFiles": 21,
+  "allMatch": true
+}

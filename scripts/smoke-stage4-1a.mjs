@@ -179,4 +179,3 @@ element('#close-fallback').listeners.click();element('#reset-button').listeners.
 assert(art.player.position.distanceTo(new THREE.Vector3(...layout.indoor.spawn))<.001,'Reset must use layout spawn');
 assert(JSON.parse(saved.get('pojian.stage3.explored')).length===3,'Existing save key must remain compatible');
 console.log(`Stage 4.1A: ${checks} camera-relative direction cases, constrained orbit, detailed forest, scaled anchors, three rooms and data return: OK`);
-

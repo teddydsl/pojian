@@ -1,0 +1,7 @@
+# Generated bundles stay in the repository for offline review; hide them from
+# normal GitHub source reviews and language statistics. Keep their bytes intact.
+public/releases/** linguist-generated=true
+reviews/snapshots/** linguist-generated=true
+public/assets/models/*.embedded.js linguist-generated=true
+public/vendor/** linguist-vendored=true
+vendor/** linguist-vendored=true

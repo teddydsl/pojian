@@ -67,3 +67,6 @@ pojian/
 - 构建：`npm run build:site`（需 Python Pillow）；回归：`npm run test:release`、`npm run test:stage5a-1`、`npm run test:stage4-1a`；场景估算：`npm run audit:runtime`。
 - 资源输出 `public/releases/<内容哈希>/` 与 `public/release-manifest.json`。图标为像素一致的 WebP；模型保持已验收精度。原始模型归档 `reviews/source-glb/` 保留本地，不上传 Git。
 - 发布地址：https://teddydsl.github.io/pojian/ 。沿用 `main` 分支根目录 Pages 构建；不占用个人主页根路径。
+
+
+5A.3 已发布并核验：[在线体验](https://teddydsl.github.io/pojian/)。Pages 构建成功，21 个线上文件与本地哈希一致。实际设备帧率请查看设置 → 演示工具；本次自动浏览器控制超时，未将离线几何估算作为 GPU 帧率结果。
