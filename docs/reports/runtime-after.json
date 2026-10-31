@@ -1,0 +1,79 @@
+{
+  "method": "Node/jsdom + actual Three.js graph; stub renderer/image decode/audio. CPU and geometric estimates only, not GPU FPS.",
+  "node": "v25.8.2",
+  "assetScriptEvaluationMs": 49,
+  "sceneConstructionMs": 2197,
+  "indoor": {
+    "visibleMeshes": 110,
+    "culledMeshes": 99,
+    "estimatedCalls": 110,
+    "estimatedTriangles": 90209,
+    "visibleLights": 5,
+    "uniqueGeometries": 39,
+    "geometryBufferBytes": 1923648,
+    "uniqueMaterials": 16,
+    "uniqueTextures": 11,
+    "idle": {
+      "frames": 240,
+      "totalCpuMs": 5.52,
+      "meanCpuMs": 0.023,
+      "domMutations": 0
+    }
+  },
+  "forestViews": [
+    {
+      "label": "entrance",
+      "visibleMeshes": 108,
+      "culledMeshes": 85,
+      "estimatedCalls": 108,
+      "estimatedTriangles": 2095684,
+      "visibleLights": 6,
+      "uniqueGeometries": 19,
+      "geometryBufferBytes": 4578598,
+      "uniqueMaterials": 19,
+      "uniqueTextures": 20
+    },
+    {
+      "label": "north",
+      "visibleMeshes": 81,
+      "culledMeshes": 112,
+      "estimatedCalls": 81,
+      "estimatedTriangles": 1659225,
+      "visibleLights": 6,
+      "uniqueGeometries": 21,
+      "geometryBufferBytes": 4585030,
+      "uniqueMaterials": 20,
+      "uniqueTextures": 20
+    },
+    {
+      "label": "stream",
+      "visibleMeshes": 64,
+      "culledMeshes": 129,
+      "estimatedCalls": 64,
+      "estimatedTriangles": 1447612,
+      "visibleLights": 6,
+      "uniqueGeometries": 19,
+      "geometryBufferBytes": 4551814,
+      "uniqueMaterials": 18,
+      "uniqueTextures": 20
+    },
+    {
+      "label": "hill",
+      "visibleMeshes": 76,
+      "culledMeshes": 117,
+      "estimatedCalls": 76,
+      "estimatedTriangles": 1591544,
+      "visibleLights": 6,
+      "uniqueGeometries": 20,
+      "geometryBufferBytes": 4568422,
+      "uniqueMaterials": 19,
+      "uniqueTextures": 20
+    }
+  ],
+  "forestIdle": {
+    "frames": 240,
+    "totalCpuMs": 1.64,
+    "meanCpuMs": 0.0069,
+    "domMutations": 0
+  }
+}

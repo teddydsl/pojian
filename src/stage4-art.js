@@ -25,6 +25,7 @@
       amber: new THREE.MeshBasicMaterial({ color: '#f7b978' }),
       thread: new THREE.MeshBasicMaterial({ color: '#f3dfc5', transparent: true, opacity: .88 }),
     };
+    const importedFern = window.PojianFernScene?.create(THREE);
     function mesh(parent, geo, mat, pos, scale) { const o = new THREE.Mesh(geo, mat); o.position.set(...pos); if (scale) o.scale.set(...scale); parent.add(o); return o; }
     function ball(parent, mat, pos, scale) { return mesh(parent, sphere, mat, pos, scale); }
     function tube(parent, coords, radius, mat, segments = 28) {
@@ -103,7 +104,7 @@
         for (const [px, py, pz, sx, sy, sz] of [[0, height + .2, 0, .85, .53, .73], [-.64, height - .03, .12, .6, .45, .56], [.55, height + .02, -.18, .67, .48, .62]])
           ball(g, col, [px, py, pz], [sx, sy, sz]);
       }
-      mound(g, -.38, .26, .58, true);
+      if (!importedFern) mound(g, -.38, .26, .58, true);
     }
     function curvedPath(parent, coords, width) {
       const curve = new THREE.CatmullRomCurve3(coords.map(([x, z]) => new THREE.Vector3(x, .027, z)));
@@ -119,8 +120,12 @@
       return mesh(parent, geo, m.path, [0, 0, 0]);
     }
     const forest = new THREE.Group(); scene.add(forest);
-    const floor = mesh(forest, new THREE.PlaneGeometry(42, 44), m.earth, [0, -.055, -1]); floor.rotation.x = -Math.PI / 2;
-    mesh(forest, new THREE.CylinderGeometry(5.2, 5.3, .08, 64), m.path, [0, -.005, 0]);
+    // The floor continues beyond the fog range, so no flat back edge appears.
+    const floorSize = window.PojianForestScene ? 140 : 42;
+    const groundMaterial = importedFern ? felt('#73896a', .045) : m.earth;
+    const floor = mesh(forest, new THREE.PlaneGeometry(floorSize, window.PojianForestScene ? 140 : 44), groundMaterial, [0, -.055, -1]); floor.rotation.x = -Math.PI / 2;
+    if (window.PojianForestScene) groundMaterial.map.repeat.set(140 / 42, 140 / 44);
+    mesh(forest, new THREE.CylinderGeometry(importedFern ? 4.35 : 5.2, importedFern ? 4.4 : 5.3, .08, 64), m.path, [0, -.005, 0]);
     curvedPath(forest, [[0, 8.8], [-.2, 5.3], [.1, 2.4], [0, 0]], 2.6);
     curvedPath(forest, [[0, 0], [-3.1, -1.4], [-5.6, -4.2], [-8, -5.65]], 2.25);
     curvedPath(forest, [[0, 0], [.45, -3.7], [-.25, -7.3], [0, -10.7]], 2.22);
@@ -129,23 +134,86 @@
       [5,11,4.7,2],[11,9,4.1,0],[14,4,3.9,1],[12,-3,4.5,0],[13,-12,4.2,2],[5,-15,3.8,1],[-6,-16,4.5,0],[-16,8,4.7,0],[16,-6,4.2,1]];
     trees.forEach(([x, z, h, t]) => tree(forest, x, z, h, t));
     const forestObstacles = trees.map(([x, z]) => ({ x, z, radius: .55 }));
-    // Keep the paths clear; dense felt detail lives beside the route and near entrances.
-    for (let i = 0; i < 80; i++) {
-      const x = (rnd() - .5) * 34, z = (rnd() - .5) * 37 - 1;
-      const central = Math.hypot(x, z) < 5.3;
-      const onNorth = Math.abs(x) < 1.8 && z > 0 && z < 10;
-      const onSouth = Math.abs(x) < 1.6 && z < 0 && z > -12;
-      const onBranches = z < -1 && z > -8 && Math.abs(Math.abs(x) + z - 1.5) < 1.5;
-      if (central || onNorth || onSouth || onBranches) continue;
-      mound(forest, x, z, .5 + rnd() * .85, i % 3 === 0);
-      if (i % 3 === 0) { mushroom(forest, x + .38, z + .2, .42 + rnd() * .5); if (i % 2 === 0) mushroom(forest, x + .65, z + .35, .3 + rnd() * .3); }
-    }
-    for (const [x, z, s] of [[-4, 2, .8], [4, 3, .7], [-3, -5, .7], [3, -8, .9], [-10, -2, .8], [10, -10, .7], [-1, 9, .8], [1, 9, .55]]) {
-      mushroom(forest, x, z, s); mushroom(forest, x + .35, z + .12, s * .6);
+    // The fern LOD fills the green floor; a few full-detail plants anchor the
+    // route edges. The older round grass mounds remain only as a fallback.
+    const fernDetail = { ground: null, accents: null, count: 0 };
+    if (importedFern) {
+      function instances(source, sites, name) {
+        const batch = new THREE.InstancedMesh(source.geometry, source.material, sites.length);
+        const dummy = new THREE.Object3D(); batch.name = name;
+        sites.forEach(([x, z, scale, turn], i) => {
+          dummy.position.set(x, .015, z);
+          dummy.rotation.set(0, turn, 0);
+          dummy.scale.setScalar(scale);
+          dummy.updateMatrix(); batch.setMatrixAt(i, dummy.matrix);
+        });
+        batch.instanceMatrix.needsUpdate = true;
+        forest.add(batch);
+        return batch;
+      }
+      const groundSites = [];
+      for (let attempt = 0; attempt < 720 && groundSites.length < 175; attempt++) {
+        const x = (rnd() - .5) * 36, z = (rnd() - .5) * 37 - 1;
+        if (Math.hypot(x, z) < 5.1) continue;
+        if (Math.abs(x) < 1.7 && z > -12 && z < 11) continue;
+        if (z < -1 && z > -9 && Math.abs(Math.abs(x) + z - 1.5) < 1.65) continue;
+        if ([[-8, -7], [0, -12], [8, -7], [0, 9.3]].some(([hx, hz]) => Math.hypot(x - hx, z - hz) < 2.35)) continue;
+        groundSites.push([x, z, .55 + rnd() * .9, rnd() * Math.PI * 2]);
+      }
+      const accentSites = [
+        [-4.9, 2.8, 1.45], [4.7, 2.5, 1.4], [-6.2, -4.6, 1.35], [-9.8, -6.7, 1.25],
+        [-2.1, -10.2, 1.45], [2.0, -10.0, 1.35], [6.2, -4.8, 1.3], [9.9, -7.1, 1.3],
+        [-2.0, 7.8, 1.3], [2.1, 8.5, 1.4], [-12.1, -2.1, 1.35], [11.8, -11.1, 1.4],
+      ].map(([x, z, scale]) => [x, z, scale, rnd() * Math.PI * 2]);
+      fernDetail.ground = instances(importedFern.ground, groundSites, 'fern-ground-cover');
+      fernDetail.accents = instances(importedFern.accent, accentSites, 'fern-path-accents');
+      fernDetail.count = groundSites.length + accentSites.length;
+    } else {
+      for (let i = 0; i < 80; i++) {
+        const x = (rnd() - .5) * 34, z = (rnd() - .5) * 37 - 1;
+        const central = Math.hypot(x, z) < 5.3;
+        const onNorth = Math.abs(x) < 1.8 && z > 0 && z < 10;
+        const onSouth = Math.abs(x) < 1.6 && z < 0 && z > -12;
+        const onBranches = z < -1 && z > -8 && Math.abs(Math.abs(x) + z - 1.5) < 1.5;
+        if (central || onNorth || onSouth || onBranches) continue;
+        mound(forest, x, z, .5 + rnd() * .85, i % 3 === 0);
+        if (i % 3 === 0) { mushroom(forest, x + .38, z + .2, .42 + rnd() * .5); if (i % 2 === 0) mushroom(forest, x + .65, z + .35, .3 + rnd() * .3); }
+      }
+      for (const [x, z, s] of [[-4, 2, .8], [4, 3, .7], [-3, -5, .7], [3, -8, .9], [-10, -2, .8], [10, -10, .7], [-1, 9, .8], [1, 9, .55]]) {
+        mushroom(forest, x, z, s); mushroom(forest, x + .35, z + .12, s * .6);
+      }
     }
     for (let i = 0; i < 23; i++) {
       const x = (rnd() - .5) * 32, z = (rnd() - .5) * 36 - 1, s = .15 + rnd() * .22;
       ball(forest, m.stone, [x, .06, z], [s, .11, s * .75]);
+    }
+
+    // Tile the supplied forest around all sides of the playable clearing.
+    // Clones share buffers and materials, so only one GLB is decoded.
+    const forestDetail = { ring: [], mushrooms: [], fern: fernDetail, hangingEggs: [] };
+    const importedForest = window.PojianForestScene?.create(THREE);
+    if (importedForest) {
+      for (let i = 0; i < 12; i++) {
+        const angle = i / 12 * Math.PI * 2;
+        const tile = i === 0 ? importedForest.root : importedForest.root.clone(true);
+        tile.position.set(Math.sin(angle) * 24, -2.16, Math.cos(angle) * 24 - 1);
+        tile.rotation.y = angle;
+        tile.scale.setScalar(18);
+        forest.add(tile);
+        forestDetail.ring.push(tile);
+      }
+      const mushroomSites = importedFern ? [
+        [-5.1, 3.4, 3.6], [5.1, 3.0, 3.4], [4.6, -10.0, 3.2],
+        [-10.2, -5.4, 2.9], [-6.1, -7.8, 2.8], [-1.8, -12.8, 2.9],
+        [1.9, -12.6, 2.8], [6.1, -7.9, 2.8], [10.1, -6.1, 3.0],
+      ] : [[-5.1, 3.4, 3.6], [5.1, 3.0, 3.4], [4.6, -10.0, 3.2]];
+      for (const [x, z, scale] of mushroomSites) {
+        const cluster = importedForest.makeMushroomCluster();
+        cluster.position.set(x, .025, z);
+        cluster.scale.setScalar(scale);
+        forest.add(cluster);
+        forestDetail.mushrooms.push(cluster);
+      }
     }
 
     const huts = [
@@ -167,6 +235,7 @@
       hut.dataUrl = defined.dataUrl;
       hut.sound = defined.sound;
     }
+    const importedEgg = window.PojianEggScene?.create(THREE);
     function createCocoon(parent, hut, isOwn = false) {
       const group = new THREE.Group(); group.position.set(hut.x, 0, hut.z); if (isOwn) group.rotation.y = Math.PI; parent.add(group);
       if (hut.shape === 'tree') {
@@ -176,38 +245,51 @@
       } else if (hut.shape === 'log') {
         const log = mesh(group, new THREE.CylinderGeometry(.86, .86, 3.7, 13), m.bark, [0, .95, -1.04]); log.rotation.z = Math.PI / 2;
         for (let i = 0; i < 3; i++) ring(group, [1.9, .95, -1.04], [.35 + i * .19, .35 + i * .19], .018, m.cutWood);
-        mound(group, -1.1, -1.0, .8);
+        if (!importedFern) mound(group, -1.1, -1.0, .8);
       } else {
         mesh(group, new THREE.CylinderGeometry(1.18, 1.4, 2.3, 13), m.bark, [0, 1.15, -.8]);
         mesh(group, new THREE.CylinderGeometry(1.2, 1.2, .09, 18), m.cutWood, [0, 2.34, -.8]);
-        mound(group, 1.1, -.8, .7);
+        if (!importedFern) mound(group, 1.1, -.8, .7);
       }
-      // A shared woven cocoon sits in front of each different wooden support.
-      ball(group, m.wool, [0, 1.73, -.26], [1.16, 1.51, .83]);
-      for (let j = 0; j < 24; j++) {
-        const a = j / 24 * Math.PI * 2, pts = [];
-        for (let k = 1; k < 30; k++) {
-          const t = k / 30 * Math.PI, r = Math.sin(t), twist = a + Math.sin(t * 3 + j) * .04;
-          const px = Math.cos(twist) * 1.17 * r, py = 1.73 + Math.cos(t) * 1.5, pz = -.26 + Math.sin(twist) * .85 * r;
-          if (pz > .38 && Math.abs(px) < .61 && py > .4 && py < 2.42) continue;
-          pts.push([px, py, pz]);
+      if (importedEgg) {
+        const shell = importedEgg.clone();
+        shell.position.set(0, .10, -.45);
+        shell.scale.set(2.6, 3.1, 2.2);
+        shell.name = 'supplied-fuzzy-egg-shell';
+        group.add(shell);
+        hut.shell = shell;
+      } else {
+        // Keep an operable room if the optional local model is unavailable.
+        ball(group, m.wool, [0, 1.73, -.26], [1.16, 1.51, .83]);
+        for (let j = 0; j < 24; j++) {
+          const a = j / 24 * Math.PI * 2, pts = [];
+          for (let k = 1; k < 30; k++) {
+            const t = k / 30 * Math.PI, r = Math.sin(t), twist = a + Math.sin(t * 3 + j) * .04;
+            const px = Math.cos(twist) * 1.17 * r, py = 1.73 + Math.cos(t) * 1.5, pz = -.26 + Math.sin(twist) * .85 * r;
+            if (pz > .38 && Math.abs(px) < .61 && py > .4 && py < 2.42) continue;
+            pts.push([px, py, pz]);
+          }
+          if (pts.length > 2) tube(group, pts, .011 + j % 4 * .0015, m.thread, 32);
         }
-        if (pts.length > 2) tube(group, pts, .011 + j % 4 * .0015, m.thread, 32);
       }
-      ball(group, m.dark, [0, 1.3, .55], [.55, .91, .055]);
-      ball(group, m.amber, [0, 1.3, .603], [.40, .72, .015]);
-      ring(group, [0, 1.3, .67], [.61, .98], .115, m.woolLight);
-      const glow = new THREE.PointLight('#ffbd7a', 2.2, 4); glow.position.set(0, 1.4, .85); group.add(glow);
       const door = new THREE.Group(); group.add(door); door.userData.opening = false; door.userData.progress = 0;
-      const leafMat = felt(isOwn ? '#d0c2a4' : '#e1cdb0');
-      for (const side of [-1, 1]) {
-        const pivot = new THREE.Group(); pivot.position.set(side * .55, 1.32, .73); door.add(pivot);
-        ball(pivot, leafMat, [-side * .27, 0, 0], [.33, .85, .07]);
-        for (let k = 0; k < 4; k++) tube(pivot, [[-side * .48, -.61 + k * .38, .065], [-side * .25, -.58 + k * .38, .092], [-side * .03, -.62 + k * .38, .068]], .009, m.thread, 10);
+      if (!importedEgg) {
+        ball(group, m.dark, [0, 1.3, .55], [.55, .91, .055]);
+        ball(group, m.amber, [0, 1.3, .603], [.40, .72, .015]);
+        ring(group, [0, 1.3, .67], [.61, .98], .115, m.woolLight);
+        const leafMat = felt(isOwn ? '#d0c2a4' : '#e1cdb0');
+        for (const side of [-1, 1]) {
+          const pivot = new THREE.Group(); pivot.position.set(side * .55, 1.32, .73); door.add(pivot);
+          ball(pivot, leafMat, [-side * .27, 0, 0], [.33, .85, .07]);
+          for (let k = 0; k < 4; k++) tube(pivot, [[-side * .48, -.61 + k * .38, .065], [-side * .25, -.58 + k * .38, .092], [-side * .03, -.62 + k * .38, .068]], .009, m.thread, 10);
+        }
       }
-      mound(group, -1.05, .72, .74, true); mound(group, 1.08, .52, .68);
-      mushroom(group, -1.45, .84, .74); mushroom(group, 1.32, .61, .55);
-      hut.sign = sign(group, isOwn ? '我的茧房' : hut.name, isOwn ? '回到起点' : hut.themeTitle + ' · 示例', [0, 2.95, .88], 2.1);
+      const glow = new THREE.PointLight('#ffbd7a', importedEgg ? 1.1 : 2.2, 4); glow.position.set(0, 1.4, .78); group.add(glow);
+      if (!importedFern) {
+        mound(group, -1.05, .72, .74, true); mound(group, 1.08, .52, .68);
+        mushroom(group, -1.45, .84, .74); mushroom(group, 1.32, .61, .55);
+      }
+      hut.sign = sign(group, isOwn ? '我的茧房' : hut.name, isOwn ? '回到起点' : hut.themeTitle + ' · 示例', [0, importedEgg ? 3.25 : 2.95, .88], 2.1);
       hut.door = door; hut.group = group; hut.doorTarget = new THREE.Vector3(hut.x, 0, hut.doorZ);
       return hut;
     }
@@ -219,6 +301,23 @@
     huts.forEach(updateDoorSign);
     const own = createCocoon(forest, { x: 0, z: 9.3, doorZ: 7.75, shape: 'tree', name: '我的茧房' }, true);
     const ownDoorTarget = new THREE.Vector3(0, 0, 7.75);
+
+    if (importedEgg) {
+      // Unlabelled eggs hang from rear branches as distant, non-interactive homes.
+      for (const [x, z, height, side, turn] of [
+        [-14, -13, 4.2, 1.2, -.25], [-6, -16, 4.5, 1.1, .12],
+        [5, -15, 3.8, -1.1, -.12], [13, -12, 4.2, -1.2, .28],
+      ]) {
+        const shell = importedEgg.clone();
+        shell.name = 'background-hanging-cocoon';
+        shell.position.set(x + side, height * .55, z + .15);
+        shell.rotation.y = turn;
+        shell.scale.set(1.35, 1.48, 1.27);
+        forest.add(shell);
+        tube(forest, [[x + side * .7, height * .97, z + .1], [x + side * .9, height * .89, z + .15], [x + side, height * .55 + 1.43, z + .15]], .022, m.thread, 12);
+        forestDetail.hangingEggs.push(shell);
+      }
+    }
 
     const interior = new THREE.Group(); scene.add(interior);
     const domeTex = felt('#e8d5bd', .07);
@@ -337,7 +436,7 @@
     const hedgehog = window.PojianHedgehog.create(THREE); hedgehog.rotation.y = Math.PI; avatar.add(hedgehog);
     const marker = mesh(player, new THREE.CircleGeometry(.66, 28), new THREE.MeshBasicMaterial({ color: '#274836', transparent: true, opacity: .14, depthWrite: false }), [0, .023, 0]); marker.rotation.x = -Math.PI / 2;
     const panelApproach = new THREE.Vector3(-1.5, 0, -.55);
-    return { forest, interior, huts, own, ownDoorTarget, roomAccent, roomLight, player, avatar, panel, panelMount, panelApproach, setTheme, themeGroups, updateDoorSign, forestObstacles };
+    return { forest, forestDetail, interior, huts, own, ownDoorTarget, roomAccent, roomLight, player, avatar, panel, panelMount, panelApproach, setTheme, themeGroups, updateDoorSign, forestObstacles };
   }
   window.PojianStage4Art = { build };
 })();

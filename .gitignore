@@ -2,3 +2,5 @@
 node_modules/
 .env
 .env.*
+# Large original model archives stay local; optimized runtime models are tracked.
+reviews/source-glb/

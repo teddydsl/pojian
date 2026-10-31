@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>破茧 · 脱敏示例数据页</title>
+  <title>数据视角 · 破茧</title>
+  <link rel="icon" type="image/svg+xml" href="../public/assets/icons/data.svg">
   <style>
     :root{--ink:#334b3b;--accent:#8fae93;--paper:#f5eedf}
     *{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(circle at 18% 6%,#fff5dc 0,transparent 34%),radial-gradient(circle at 88% 18%,#dae7e1 0,transparent 30%),#e6e8d9;color:var(--ink);font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}button{font:inherit}
@@ -14,13 +15,13 @@
 <body>
   <main class="shell">
     <div class="top"><div class="brand">破茧 <span style="font-family:sans-serif;font-size:11px;letter-spacing:.1em;color:#8b9b89">/ DATA VIEW</span></div><div class="badge">脱敏示意 · 无真实用户资料</div></div>
-    <section class="hero"><div class="eyebrow">COCOON / INFORMATION WINDOW</div><h1 id="title">示例茧房</h1><p id="intro">这是项目内的数据页接入示例。正式资料和链接会在提供后替换。</p><small id="meta">页面与游戏在不同标签页打开；切回游戏可保留所在茧房。</small></section>
+    <section class="hero"><div class="eyebrow">COCOON / INFORMATION WINDOW</div><h1 id="title">示例茧房</h1><p id="intro">这是项目内的数据页接入示例。正式资料和链接会在提供后替换。</p><small id="meta">页面与游戏在不同标签页打开；切回游戏即可在原茧房继续探索。</small></section>
     <div class="grid">
       <section class="card"><h2>用户画像</h2><p>只展示字段结构。具体身份、年龄、性格及喜好均未接入。</p><div class="pill-row"><span class="pill">资料字段 · 已隐藏</span><span class="pill">公开范围 · 待配置</span><span class="pill">本人授权 · 待接入</span></div></section>
       <section class="card"><h2>浏览信息</h2><p>卡片为纯视觉占位，没有网址、时间、浏览轨迹或事件明细。</p><div class="feed-item"><span class="square"></span><span class="bars"><i></i><i></i></span></div><div class="feed-item"><span class="square" style="opacity:.7"></span><span class="bars"><i></i><i></i></span></div><div class="feed-item"><span class="square" style="opacity:.5"></span><span class="bars"><i></i><i></i></span></div></section>
       <section class="card"><h2>内容标签</h2><p>标签值尚未提供。此处的色块不对应任何人的兴趣判断。</p><div class="pill-row"><span class="pill">标签占位 01</span><span class="pill">标签占位 02</span><span class="pill">标签占位 03</span></div></section>
     </div>
-    <div class="foot"><span>此页不会请求外部数据，也不包含真实玩家资料或浏览记录。关闭或切换标签页即可回到原游戏位置。</span><button id="close-button" type="button">关闭此标签，返回游戏</button></div>
+    <div class="foot"><span>此页不会请求外部数据，也不包含真实玩家资料或浏览记录。关闭或切换标签页即可回到原游戏位置，并可直接移动。</span><button id="close-button" type="button">关闭数据页，返回茧房</button></div>
   </main>
   <script src="../public/data/cocoons-stage4.js"></script>
   <script>
@@ -28,7 +29,7 @@
       const id = new URLSearchParams(location.search).get('room');
       const room = window.PojianCocoons.rooms.find(item => item.id === id);
       const title = room ? room.themeTitle : '我的信息视角';
-      document.title = `破茧 · ${title} · 示例数据页`;
+      document.title = `数据视角 · ${title} | 破茧`;
       document.documentElement.style.setProperty('--accent', room?.accent || '#b8a17b');
       document.getElementById('title').textContent = title;
       document.getElementById('intro').textContent = room?.demoLine || '这是自己的示例信息窗口。正式资料和链接会在提供后替换。';

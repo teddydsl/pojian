@@ -1,0 +1,103 @@
+{
+  "stage": "4.1A-r2",
+  "sources": [
+    {
+      "path": "public/vendor/three.global.js",
+      "sha256": "0b7432fdba53ad4f89c9ef2927e1d957b2f60abb3239407ae0653f6ba32e9c38"
+    },
+    {
+      "path": "src/hedgehog-v1.js",
+      "sha256": "8ebc4afd435eced7b07e2439cd105334926e38796e9493e1360d55bf3ef7242c"
+    },
+    {
+      "path": "public/assets/models/hedgehog-plush-single-colored.embedded.js",
+      "sha256": "1138aef225999f0e61d902b0a74a6a160834c5a9c8964bce502fb93669007a54"
+    },
+    {
+      "path": "src/hedgehog-felt-glb.js",
+      "sha256": "c4f153b4fa9b858cc674cf3119eea92a4b95335ed52af766eb88334ff7c3b57f"
+    },
+    {
+      "path": "public/assets/models/felt-forest-with-mushrooms.embedded.js",
+      "sha256": "f29fcbc62ab28e3d03cda9028691c6ed634e527c112b58d902a4bef4b525ae3f"
+    },
+    {
+      "path": "src/forest-glb.js",
+      "sha256": "f9f9cbb4e74bb46a64b1c3a9524cea7992a11131c8f91052051a30358d89fa5a"
+    },
+    {
+      "path": "public/assets/models/fuzzy-egg-game.embedded.js",
+      "sha256": "aba17512224a5f2015740679055c055015fccd4f8c62fdadbc0452f220fb19c7"
+    },
+    {
+      "path": "src/egg-glb.js",
+      "sha256": "d7cf44636380db01ca0a92ad051c7f8977a16339ee5493453977c04dc321701c"
+    },
+    {
+      "path": "public/assets/models/fern-plant-game.embedded.js",
+      "sha256": "577fa800c92af8da629a07ad473874b1120c55aa12575a4f6fa648ad1cdf8e1b"
+    },
+    {
+      "path": "public/assets/models/fern-plant-ground.embedded.js",
+      "sha256": "019f3851f16c8e2ee4f1b663c0cae6884e179d8108511c26f36b0c0a720ae083"
+    },
+    {
+      "path": "src/fern-glb.js",
+      "sha256": "29ff2bd303facbe77c0e936bff719f297003a2973285ca5f755161e7832099a9"
+    },
+    {
+      "path": "public/data/cocoons-stage4.js",
+      "sha256": "1e146a4a7585d05fee280ce8a625abb782f8a7134f36e8598e302708c288cf4d"
+    },
+    {
+      "path": "src/stage3-audio.js",
+      "sha256": "3217dc3788a1422c8f5ab861b488d4a17cf25cfb49513891f4840b862eab9f3f"
+    },
+    {
+      "path": "public/assets/models/world-detail.embedded.js",
+      "sha256": "136487f97aa8ce9896d169327810cd173e832481f872bc264d86555532c9d962"
+    },
+    {
+      "path": "src/core/model-glb.js",
+      "sha256": "b0ec1b0d52d4496a6eba5b47caaaa8639049b87eb94df0e257da60dec8040b4c"
+    },
+    {
+      "path": "src/world/layout.js",
+      "sha256": "e2063b9204c11c12b27ce8beb866dd53874fa6f6c362dd1cb6c8783d4fe37545"
+    },
+    {
+      "path": "src/core/camera.js",
+      "sha256": "437f215822c12a787a5959a44a14b1a39e1b40f3177dd20c411d5df10cddbf0f"
+    },
+    {
+      "path": "src/core/movement.js",
+      "sha256": "80d2157a7188afe84bf8a4b26a6602be6cd86f892862fcb3e09c165bf73d1aa4"
+    },
+    {
+      "path": "src/world/forest.js",
+      "sha256": "a34af36a09f48e2d04ac7d113c82f2e7b89d86a295ac233c8c64d41ad0c3e15c"
+    },
+    {
+      "path": "src/world/art.js",
+      "sha256": "df08d4d0e36e4a9b5f57f35f6ce1e7bc6757af16cb7a1a8eab1852ae3adc2c76"
+    },
+    {
+      "path": "src/stage4-1a.js",
+      "sha256": "90d811cde4db7d6e56893e0d5754f454221db4679b041835e9c546e87dfe8bfc"
+    }
+  ],
+  "models": {
+    "stylized-tree-game": {
+      "byteLength": 973344,
+      "sha256": "1c787a4117de7033b5ff73394344d08b9c20075564bb5e50b23166bab58ec1cc"
+    },
+    "log-game": {
+      "byteLength": 883480,
+      "sha256": "30a39ac52ccbebc19b966400d75cfbb00a78e2f90db38ec96a344c9e4a4ae794"
+    },
+    "mossy-shrub-cluster-game": {
+      "byteLength": 907736,
+      "sha256": "066147be003a9a30e7c7d807127dcd58e7d1cb19de8aed12d84a2693ef25de3d"
+    }
+  }
+}

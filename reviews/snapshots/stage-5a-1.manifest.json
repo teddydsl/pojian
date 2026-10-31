@@ -1,0 +1,180 @@
+{
+  "stage": "5A.1-interior-r1",
+  "artBaseline": "4.1A-r2 + supplied wool exit",
+  "sources": [
+    {
+      "path": "reviews/snapshots/stage-4-1a-r2.assets.js",
+      "sha256": "86baf1ce69927ba0c00a72d6b154712ba66c78e60a747219a2bd9cb223c8c19a"
+    },
+    {
+      "path": "public/assets/models/interior-door.embedded.js",
+      "sha256": "76209c6e47c2df4392c1dcfaf297a436d800fc5a7589357f80edf4cd1123b4b1"
+    },
+    {
+      "path": "public/data/interior-stage5a.js",
+      "sha256": "ddccee5c371c753889beca275f42a42f5458aae2cb950016e0116def635425b4"
+    },
+    {
+      "path": "src/world/interior-refresh.js",
+      "sha256": "22ec312c052dbf2b0290f166770653418ff6b38e5cd9fb3e7d3bb42db96d7594"
+    },
+    {
+      "path": "public/data/ui-stage5a.js",
+      "sha256": "dc97f367c0213b0c3d822b17fea2cab9cc1aebbdcfccc588ee8e55545a8b442f"
+    },
+    {
+      "path": "src/systems/save.js",
+      "sha256": "af8f1f294f086517c75058d71eae0f6d858fe269b3aa71cb086011e85fe3fbf0"
+    },
+    {
+      "path": "src/systems/weather.js",
+      "sha256": "4a3ad8e54ae4ed05bae9f63b2e1b47ecb0da2e575c6b33935e1efb6155fa3fcf"
+    },
+    {
+      "path": "src/ui/stage5a-ui.js",
+      "sha256": "21195117ee28d84245004856c9626998411e77a0d15235bbf7eff41785e0dbfd"
+    },
+    {
+      "path": "public/assets/models/glowing-wool-cave-game.glb",
+      "sha256": "65569a2a8dcfe38c7169584207b7bc5b0f9a9458213c94bf5b5a377f943386f9"
+    },
+    {
+      "path": "src/stage5a.js",
+      "sha256": "c3b615083c52dacdf214f7e7a06431ab5fc574e75f784ea7af03e1e3a0e6c092"
+    },
+    {
+      "path": "reviews/stage-5a-1.html",
+      "sha256": "d9eb26cc9c5486a7eaba1139b9df9f90905da5e982f8e59e1eadd93bcb8a00b2"
+    },
+    {
+      "path": "public/assets/icons/map/map.png",
+      "sha256": "e3034aa481a8a1d791d8a524499c25e9d790a81d23b9fabdfe854da7a637a372"
+    },
+    {
+      "path": "public/assets/icons/weather/weather-clear.png",
+      "sha256": "e06e0f06da3e0a5d9def8eb039edb771522a6a2fba0f8a2a0fc83a4ddf8dec64"
+    },
+    {
+      "path": "public/assets/icons/weather/weather-cloudy.png",
+      "sha256": "98afaf7991a8376fb5c1e747b806e0d353af0979d5bf5cc21344661edbc93ddb"
+    },
+    {
+      "path": "public/assets/icons/weather/weather-rain.png",
+      "sha256": "01fbaa4aff36bda3547464c9cfab73c5bcca2ae685a4b36cec8c17dcde3c185b"
+    },
+    {
+      "path": "public/assets/icons/weather/weather-fog.png",
+      "sha256": "391a9fe7fe0b58179cbffd01e341c953d389d82632570bc5adcbb349b4483328"
+    },
+    {
+      "path": "public/assets/icons/weather/weather-wind.png",
+      "sha256": "61ba4cdc405bc974f8e2d3b2cd527ef46ef42db1d7756464b6f5a8f17edc59be"
+    },
+    {
+      "path": "public/assets/icons/data/data.png",
+      "sha256": "b1c8037de3f77a58536c254f2a27dce6e9b05108cefa3727b954ab842a5fe505"
+    },
+    {
+      "path": "public/assets/icons/data/profile.png",
+      "sha256": "d4b733b8af86b01431179045150f9c1769f9130e0c21db28e086794acbd7da05"
+    },
+    {
+      "path": "public/assets/icons/data/history.png",
+      "sha256": "6a6b6ec65b4dc6b7247707464fe9dc3a06665de94e7606ba8942c2d4b6e744db"
+    },
+    {
+      "path": "public/assets/icons/data/friends.png",
+      "sha256": "975f04425b56460a13486cbe69bca1cae19ead24be4628c158877702c1eb25c5"
+    },
+    {
+      "path": "public/assets/icons/quest/quests.png",
+      "sha256": "9dd7f2e728d69bc61faff2ce2eb6b90eb038f8b8327c8fc6f3b87733d7461e6c"
+    },
+    {
+      "path": "public/assets/icons/quest/find-people.png",
+      "sha256": "5e2d1ac283a96e8feb644205b89533b062c4765d5c6e1cf0056bb67aacdd83e7"
+    },
+    {
+      "path": "public/assets/icons/quest/quest-complete.png",
+      "sha256": "1a90d56020cba0ff473cf62404db8c1f2235eae82cd88a626afc2bee6eac6361"
+    },
+    {
+      "path": "public/assets/icons/quest/rookie-badge.png",
+      "sha256": "1f444f60aa133b2b5c38df833303eee6caf1b553bd4c1dc253af8bd901ee5fdf"
+    },
+    {
+      "path": "public/assets/icons/message/messages.png",
+      "sha256": "c9e6be4352e2d898c40036c553cb31b5dbc2d5dbbcb9f46f0e0110cf2e396ac7"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "reviews/snapshots/stage-5a-1.assets.js",
+      "sha256": "46b2ffa8494ac48de3390afcdfb86071721300f1096a144b4dd7636b075e6ea9"
+    },
+    {
+      "path": "reviews/snapshots/stage-5a-1.js",
+      "sha256": "c3b615083c52dacdf214f7e7a06431ab5fc574e75f784ea7af03e1e3a0e6c092"
+    },
+    {
+      "path": "reviews/snapshots/stage-5a-1-icons/map/map.png",
+      "sha256": "e3034aa481a8a1d791d8a524499c25e9d790a81d23b9fabdfe854da7a637a372"
+    },
+    {
+      "path": "reviews/snapshots/stage-5a-1-icons/weather/weather-clear.png",
+      "sha256": "e06e0f06da3e0a5d9def8eb039edb771522a6a2fba0f8a2a0fc83a4ddf8dec64"
+    },
+    {
+      "path": "reviews/snapshots/stage-5a-1-icons/weather/weather-cloudy.png",
+      "sha256": "98afaf7991a8376fb5c1e747b806e0d353af0979d5bf5cc21344661edbc93ddb"
+    },
+    {
+      "path": "reviews/snapshots/stage-5a-1-icons/weather/weather-rain.png",
+      "sha256": "01fbaa4aff36bda3547464c9cfab73c5bcca2ae685a4b36cec8c17dcde3c185b"
+    },
+    {
+      "path": "reviews/snapshots/stage-5a-1-icons/weather/weather-fog.png",
+      "sha256": "391a9fe7fe0b58179cbffd01e341c953d389d82632570bc5adcbb349b4483328"
+    },
+    {
+      "path": "reviews/snapshots/stage-5a-1-icons/weather/weather-wind.png",
+      "sha256": "61ba4cdc405bc974f8e2d3b2cd527ef46ef42db1d7756464b6f5a8f17edc59be"
+    },
+    {
+      "path": "reviews/snapshots/stage-5a-1-icons/data/data.png",
+      "sha256": "b1c8037de3f77a58536c254f2a27dce6e9b05108cefa3727b954ab842a5fe505"
+    },
+    {
+      "path": "reviews/snapshots/stage-5a-1-icons/data/profile.png",
+      "sha256": "d4b733b8af86b01431179045150f9c1769f9130e0c21db28e086794acbd7da05"
+    },
+    {
+      "path": "reviews/snapshots/stage-5a-1-icons/data/history.png",
+      "sha256": "6a6b6ec65b4dc6b7247707464fe9dc3a06665de94e7606ba8942c2d4b6e744db"
+    },
+    {
+      "path": "reviews/snapshots/stage-5a-1-icons/data/friends.png",
+      "sha256": "975f04425b56460a13486cbe69bca1cae19ead24be4628c158877702c1eb25c5"
+    },
+    {
+      "path": "reviews/snapshots/stage-5a-1-icons/quest/quests.png",
+      "sha256": "9dd7f2e728d69bc61faff2ce2eb6b90eb038f8b8327c8fc6f3b87733d7461e6c"
+    },
+    {
+      "path": "reviews/snapshots/stage-5a-1-icons/quest/find-people.png",
+      "sha256": "5e2d1ac283a96e8feb644205b89533b062c4765d5c6e1cf0056bb67aacdd83e7"
+    },
+    {
+      "path": "reviews/snapshots/stage-5a-1-icons/quest/quest-complete.png",
+      "sha256": "1a90d56020cba0ff473cf62404db8c1f2235eae82cd88a626afc2bee6eac6361"
+    },
+    {
+      "path": "reviews/snapshots/stage-5a-1-icons/quest/rookie-badge.png",
+      "sha256": "1f444f60aa133b2b5c38df833303eee6caf1b553bd4c1dc253af8bd901ee5fdf"
+    },
+    {
+      "path": "reviews/snapshots/stage-5a-1-icons/message/messages.png",
+      "sha256": "c9e6be4352e2d898c40036c553cb31b5dbc2d5dbbcb9f46f0e0110cf2e396ac7"
+    }
+  ]
+}

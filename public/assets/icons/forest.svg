@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="破茧茧林探索">
+  <rect width="64" height="64" rx="17" fill="#244d38"/>
+  <path d="M32 9 18 31h9l-13 19h36L37 31h9Z" fill="#c7d9b0" stroke="#f8ead0" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M32 27v28" stroke="#e9bd77" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="48" cy="16" r="5" fill="#f5cb8b"/>
+</svg>

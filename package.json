@@ -5,10 +5,26 @@
   "type": "module",
   "scripts": {
     "build:review": "node scripts/build-review.mjs",
-    "build:site": "npm run build:review && node scripts/build-site.mjs",
+    "build:model-preview": "node scripts/build-model-preview.mjs",
+    "build:plush-preview": "python3 scripts/colorize-hedgehog-plush.py && node scripts/build-plush-preview.mjs",
+    "build:forest-preview": "node scripts/build-forest-preview.mjs",
+    "build:egg-preview": "node scripts/build-egg-preview.mjs",
+    "build:fern-preview": "node scripts/build-fern-preview.mjs",
+    "build:stage4-1a": "npm run build:review && npm run build:plush-preview && npm run build:forest-preview && npm run build:egg-preview && npm run build:fern-preview && node scripts/build-stage4-1a.mjs",
+    "optimize:egg": "python3 scripts/optimize-fuzzy-egg.py && npm run build:egg-preview",
+    "build:site": "python3 scripts/optimize-release-icons.py && node scripts/build-site.mjs",
     "test:stage1": "node scripts/smoke-stage1.mjs",
     "test:stage2": "node scripts/smoke-stage2.mjs",
     "test:stage3": "node scripts/smoke-stage3.mjs",
-    "test:stage4": "node scripts/smoke-stage4.mjs"
+    "test:stage4": "node scripts/smoke-stage4.mjs",
+    "test:stage4-1": "node scripts/smoke-stage4-1.mjs",
+    "test:stage4-1a": "node scripts/smoke-stage4-1a.mjs",
+    "build:stage5a-1": "node scripts/build-stage5a.mjs",
+    "test:stage5a-1": "node scripts/smoke-stage5a-1.mjs",
+    "audit:runtime": "node scripts/audit-runtime.mjs index.html docs/reports/runtime-after.json",
+    "test:release": "node scripts/smoke-release.mjs"
+  },
+  "devDependencies": {
+    "jsdom": "^21.1.2"
   }
 }

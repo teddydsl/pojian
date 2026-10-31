@@ -1,0 +1,111 @@
+{
+  "icons": [
+    {
+      "source": "public/assets/icons/data/data.png",
+      "output": "public/assets/icons-webp/data/data.webp",
+      "originalBytes": 37622,
+      "releaseBytes": 24654,
+      "rgbaExact": true
+    },
+    {
+      "source": "public/assets/icons/data/friends.png",
+      "output": "public/assets/icons-webp/data/friends.webp",
+      "originalBytes": 39576,
+      "releaseBytes": 24944,
+      "rgbaExact": true
+    },
+    {
+      "source": "public/assets/icons/data/history.png",
+      "output": "public/assets/icons-webp/data/history.webp",
+      "originalBytes": 38887,
+      "releaseBytes": 25526,
+      "rgbaExact": true
+    },
+    {
+      "source": "public/assets/icons/data/profile.png",
+      "output": "public/assets/icons-webp/data/profile.webp",
+      "originalBytes": 40085,
+      "releaseBytes": 25544,
+      "rgbaExact": true
+    },
+    {
+      "source": "public/assets/icons/map/map.png",
+      "output": "public/assets/icons-webp/map/map.webp",
+      "originalBytes": 42903,
+      "releaseBytes": 28194,
+      "rgbaExact": true
+    },
+    {
+      "source": "public/assets/icons/message/messages.png",
+      "output": "public/assets/icons-webp/message/messages.webp",
+      "originalBytes": 35460,
+      "releaseBytes": 24034,
+      "rgbaExact": true
+    },
+    {
+      "source": "public/assets/icons/quest/find-people.png",
+      "output": "public/assets/icons-webp/quest/find-people.webp",
+      "originalBytes": 40653,
+      "releaseBytes": 25370,
+      "rgbaExact": true
+    },
+    {
+      "source": "public/assets/icons/quest/quest-complete.png",
+      "output": "public/assets/icons-webp/quest/quest-complete.webp",
+      "originalBytes": 41120,
+      "releaseBytes": 25778,
+      "rgbaExact": true
+    },
+    {
+      "source": "public/assets/icons/quest/quests.png",
+      "output": "public/assets/icons-webp/quest/quests.webp",
+      "originalBytes": 37667,
+      "releaseBytes": 26218,
+      "rgbaExact": true
+    },
+    {
+      "source": "public/assets/icons/quest/rookie-badge.png",
+      "output": "public/assets/icons-webp/quest/rookie-badge.webp",
+      "originalBytes": 43946,
+      "releaseBytes": 27330,
+      "rgbaExact": true
+    },
+    {
+      "source": "public/assets/icons/weather/weather-clear.png",
+      "output": "public/assets/icons-webp/weather/weather-clear.webp",
+      "originalBytes": 38719,
+      "releaseBytes": 24772,
+      "rgbaExact": true
+    },
+    {
+      "source": "public/assets/icons/weather/weather-cloudy.png",
+      "output": "public/assets/icons-webp/weather/weather-cloudy.webp",
+      "originalBytes": 36970,
+      "releaseBytes": 24018,
+      "rgbaExact": true
+    },
+    {
+      "source": "public/assets/icons/weather/weather-fog.png",
+      "output": "public/assets/icons-webp/weather/weather-fog.webp",
+      "originalBytes": 37461,
+      "releaseBytes": 24640,
+      "rgbaExact": true
+    },
+    {
+      "source": "public/assets/icons/weather/weather-rain.png",
+      "output": "public/assets/icons-webp/weather/weather-rain.webp",
+      "originalBytes": 39669,
+      "releaseBytes": 26536,
+      "rgbaExact": true
+    },
+    {
+      "source": "public/assets/icons/weather/weather-wind.png",
+      "output": "public/assets/icons-webp/weather/weather-wind.webp",
+      "originalBytes": 36574,
+      "releaseBytes": 23880,
+      "rgbaExact": true
+    }
+  ],
+  "originalBytes": 587312,
+  "releaseBytes": 381438
+}

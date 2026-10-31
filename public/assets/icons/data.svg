@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="破茧数据视角">
+  <rect width="64" height="64" rx="17" fill="#a46d55"/>
+  <rect x="10" y="11" width="44" height="42" rx="8" fill="#f8ead8" stroke="#f9d4ad" stroke-width="2"/>
+  <circle cx="23" cy="27" r="6" fill="#83aaa4"/>
+  <path d="M15 41c1-6 5-9 8-9s7 3 8 9" fill="#83aaa4"/>
+  <path d="M37 24h11M37 31h11M37 38h7" stroke="#a46d55" stroke-width="3" stroke-linecap="round"/>
+</svg>

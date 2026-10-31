@@ -1,0 +1,122 @@
+{
+  "stage": "5A.3",
+  "releaseId": "5a3-e0a0c9c7b193",
+  "acceptedStage": "5A.1-interior-r1",
+  "deferred": "5A.2 gameplay/rewards/collectibles",
+  "files": [
+    {
+      "path": "index.html",
+      "bytes": 26000,
+      "gzipBytes": 7841,
+      "sha256": "27c735406755cc6a4418055537b94c0026a0b75817e4ce973383283dce96ac4c"
+    },
+    {
+      "path": "reviews/stage-5a.html",
+      "bytes": 25996,
+      "gzipBytes": 7837,
+      "sha256": "8babdc4d08dad267f6629903a47140513938c81845749de74a7ec98d621fdb67"
+    },
+    {
+      "path": "public/releases/5a3-e0a0c9c7b193/assets.js",
+      "bytes": 12124681,
+      "gzipBytes": 6784423,
+      "sha256": "1fc61e1ef7260e93ef08f43dd7c6f57a0a0709afd45a5ca3f3d6578d05db18da"
+    },
+    {
+      "path": "public/releases/5a3-e0a0c9c7b193/runtime.js",
+      "bytes": 20705,
+      "gzipBytes": 7054,
+      "sha256": "10688b777ebad1826a5d52b47c48a36806283a987c0b0838652836c4a5390014"
+    },
+    {
+      "path": "public/releases/5a3-e0a0c9c7b193/icons/map/map.webp",
+      "bytes": 28194,
+      "gzipBytes": 28192,
+      "sha256": "18ae7cd6c68b29cdf6ad88733a25a3319182c4cdbdc2badd88e931c73e68175d"
+    },
+    {
+      "path": "public/releases/5a3-e0a0c9c7b193/icons/weather/weather-clear.webp",
+      "bytes": 24772,
+      "gzipBytes": 24800,
+      "sha256": "8b56d304a89cc82f1d4e1e693de7367164af1f56cff190fa94e1a1f5d7a5455a"
+    },
+    {
+      "path": "public/releases/5a3-e0a0c9c7b193/icons/weather/weather-cloudy.webp",
+      "bytes": 24018,
+      "gzipBytes": 24046,
+      "sha256": "3ed42ae5c2b6eb7d7bd6f57407833b2d989b040a751134e805a062798d7646ee"
+    },
+    {
+      "path": "public/releases/5a3-e0a0c9c7b193/icons/weather/weather-rain.webp",
+      "bytes": 26536,
+      "gzipBytes": 26539,
+      "sha256": "5674ebba87ff8d0e79a3443007d68bc92798dea6ecd65ed9553a47019c5551f7"
+    },
+    {
+      "path": "public/releases/5a3-e0a0c9c7b193/icons/weather/weather-fog.webp",
+      "bytes": 24640,
+      "gzipBytes": 24668,
+      "sha256": "54ed37ffc219689bd8a72846fb23fb05608b00b300a3454a6b2f357ea883884e"
+    },
+    {
+      "path": "public/releases/5a3-e0a0c9c7b193/icons/weather/weather-wind.webp",
+      "bytes": 23880,
+      "gzipBytes": 23908,
+      "sha256": "0906557113e605d7b8edcda8950bb9e96bc161dbf84e756ed2f7469f0d4adbc7"
+    },
+    {
+      "path": "public/releases/5a3-e0a0c9c7b193/icons/data/data.webp",
+      "bytes": 24654,
+      "gzipBytes": 24682,
+      "sha256": "0431614515cb5f292f04796acc6fe1b00d32d31bc4f8dea961cca68a7843afa0"
+    },
+    {
+      "path": "public/releases/5a3-e0a0c9c7b193/icons/data/profile.webp",
+      "bytes": 25544,
+      "gzipBytes": 25572,
+      "sha256": "9b0980ce22d7fc563aaccba8895046e5dc703fd75240de358a160becee66a7e9"
+    },
+    {
+      "path": "public/releases/5a3-e0a0c9c7b193/icons/data/history.webp",
+      "bytes": 25526,
+      "gzipBytes": 25554,
+      "sha256": "81561bce5df0ad27771a973f2b8b92321f0bdbb035c6ba28c2dc940b3f423b4d"
+    },
+    {
+      "path": "public/releases/5a3-e0a0c9c7b193/icons/data/friends.webp",
+      "bytes": 24944,
+      "gzipBytes": 24972,
+      "sha256": "b3aae50ab6408f76eaff489fad9efb1d5e7d1b312dac80a2a1b21ea8a94bca0a"
+    },
+    {
+      "path": "public/releases/5a3-e0a0c9c7b193/icons/quest/quests.webp",
+      "bytes": 26218,
+      "gzipBytes": 26204,
+      "sha256": "9b89036fd87ec142af5c6174e69418814d53d31c75ef6edc91eccd2a5e2890ec"
+    },
+    {
+      "path": "public/releases/5a3-e0a0c9c7b193/icons/quest/find-people.webp",
+      "bytes": 25370,
+      "gzipBytes": 25398,
+      "sha256": "7004f1921b0e8f7e0ea77ae91652199dbd2bb28b8f726149a56fd8a3eff538ec"
+    },
+    {
+      "path": "public/releases/5a3-e0a0c9c7b193/icons/quest/quest-complete.webp",
+      "bytes": 25778,
+      "gzipBytes": 25806,
+      "sha256": "38f00827d5b3212df991b8d6967666c3c99d95c3210536712c2d39d262d03aea"
+    },
+    {
+      "path": "public/releases/5a3-e0a0c9c7b193/icons/quest/rookie-badge.webp",
+      "bytes": 27330,
+      "gzipBytes": 27358,
+      "sha256": "1d8da564be0cba5ca89234540e652a61e2a1a09ce3eef4e13fe4c26628edb3d9"
+    },
+    {
+      "path": "public/releases/5a3-e0a0c9c7b193/icons/message/messages.webp",
+      "bytes": 24034,
+      "gzipBytes": 24062,
+      "sha256": "d7395146f350d28b811b3b4e83e58a93bdbc4369d9c1148bc7b81ebfab881c7a"
+    }
+  ]
+}
