@@ -1,0 +1,19 @@
+{
+  "releaseId": "5a3-e0a0c9c7b193",
+  "recordedAtUTC": "2026-10-31T11:17:33.253095+00:00",
+  "source": "user-reported in-game FPS display",
+  "scene": "forest",
+  "initial": "FPS 初始在 30 多摇摆",
+  "steadyFps": {
+    "min": 50,
+    "max": 60
+  },
+  "userObservation": "现在好一些，基本稳定在 50～60 FPS",
+  "device": null,
+  "browser": null,
+  "sampleDurationSeconds": null,
+  "notes": [
+    "User observation on their current device, not an automated GPU benchmark.",
+    "Initial fluctuation remains an optimization item; no cause is established by this observation alone."
+  ]
+}

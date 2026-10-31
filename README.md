@@ -69,4 +69,4 @@ pojian/
 - 发布地址：https://teddydsl.github.io/pojian/ 。沿用 `main` 分支根目录 Pages 构建；不占用个人主页根路径。
 
 
-5A.3 已发布并核验：[在线体验](https://teddydsl.github.io/pojian/)。Pages 构建成功，21 个线上文件与本地哈希一致。实际设备帧率请查看设置 → 演示工具；本次自动浏览器控制超时，未将离线几何估算作为 GPU 帧率结果。
+5A.3 已发布并核验：[在线体验](https://teddydsl.github.io/pojian/)。Pages 构建成功，21 个线上文件与本地哈希一致。用户实机反馈：森林初始 30 多 FPS 波动，随后基本稳定在 50～60 FPS；首次进入的波动保留为后续优化项。此为当前设备观察，未将离线几何估算作为 GPU 帧率结果。
